@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minesweeper_with_friends"
+version = "0.1"
+description = "The minesweeper game but with friends."
+authors = [
+    { name = "Hampus Siik", email = "hampus.siik@gmail.com" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+keywords = ["game"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dependencies = [
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.my_custom_tool]
+config_option = "value"
