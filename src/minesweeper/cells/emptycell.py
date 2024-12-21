@@ -1,4 +1,5 @@
 """Empty cell class"""
+
 from minesweeper.cells.cell import Cell
 from minesweeper.cells.flaggedcell import FlaggedCell
 from minesweeper.cells.revealedcell import RevealedCell
