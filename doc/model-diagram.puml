@@ -41,67 +41,77 @@ skinparam {
 
 package minesweeper {
 
-    class Board {
-        - board: List(List(CellContainer))
-        + generate_board(width: int, height: int) -> None
-        + place_mines(mines: int, start_position: Position) -> None
-        + show_board() -> str
-        + surrounding_mines(position: Position) -> int
-        + show_nearby_mines() -> str
+    package board {
+
+        class Board {
+            - board: List(List(CellContainer))
+            + generate_board(width: int, height: int) -> None
+            + place_mines(mines: int, start_position: Position) -> None
+            + show_board() -> str
+            + surrounding_mines(position: Position) -> int
+            + show_nearby_mines() -> str
+        }
+
     }
 
-    protocol Cell {
-        CELL_BODY()
-    }
+    package cells {
 
-    class EmptyCell {
-        CELL_BODY()
-    }
+        protocol Cell {
+            CELL_BODY()
+        }
 
-    class MineCell {
-        CELL_BODY()
-    }
+        class EmptyCell {
+            CELL_BODY()
+        }
 
-    class FlaggedCell {
-        CELL_BODY()
-    }
+        class MineCell {
+            CELL_BODY()
+        }
 
-    class RevealedCell {
-        CELL_BODY()
-    }
+        class FlaggedCell {
+            CELL_BODY()
+        }
 
-    abstract CellWrapper {
-        - _cell
-        CELL_BODY()
-    }
+        class RevealedCell {
+            CELL_BODY()
+        }
 
-    abstract BaseCell {
-        CELL_BODY()
-    }
+        abstract CellWrapper {
+            - _cell
+            CELL_BODY()
+        }
 
-    class CellContainer {
-        - _cell: Cell
-        + is_mine() -> bool
-        + is_flagged() -> bool
-        + is_revealed() -> bool
-        + unwraped() -> Cell
-        + flag() -> None
-        + reveal() -> None
+        abstract BaseCell {
+            CELL_BODY()
+        }
+
+        class CellContainer {
+            - _cell: Cell
+            + is_mine() -> bool
+            + is_flagged() -> bool
+            + is_revealed() -> bool
+            + unwraped() -> Cell
+            + flag() -> None
+            + reveal() -> None
+        }
+
+        CellContainer *- Cell
+        BaseCell <|-- EmptyCell
+        BaseCell <|-- MineCell
+        CellWrapper <|-- FlaggedCell
+        CellWrapper <|-- RevealedCell
+        Cell <|-- CellWrapper
+        Cell <|-- BaseCell
+        CellWrapper *- BaseCell
+        FlaggedCell -> RevealedCell
+        RevealedCell -> FlaggedCell
+        BaseCell --> FlaggedCell
+        BaseCell --> RevealedCell
+
     }
 
     Board o-- CellContainer
-    CellContainer *- Cell
-    BaseCell <|-- EmptyCell
-    BaseCell <|-- MineCell
-    CellWrapper <|-- FlaggedCell
-    CellWrapper <|-- RevealedCell
-    Cell <|-- CellWrapper
-    Cell <|-- BaseCell
-    CellWrapper *- BaseCell
-    FlaggedCell -> RevealedCell
-    RevealedCell -> FlaggedCell
-    BaseCell --> FlaggedCell
-    BaseCell --> RevealedCell
+
 }
 
 @enduml
