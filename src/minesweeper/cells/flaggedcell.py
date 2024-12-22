@@ -1,33 +1,11 @@
 from minesweeper.cells.cell import Cell
+from minesweeper.cells.cellwraper import CellWrapper
 
 
-class FlaggedCell:
+class FlaggedCell(CellWrapper):
     """
     Represents a flagged cell in the minesweeper game.
     """
-
-    _cell: Cell
-    """
-    The flagged cell.
-    """
-
-    def __init__(self, cell: Cell):
-        """
-        Initializes a new instance of the FlaggedCell class containing the given cell.
-
-        Args:
-            cell (Cell): The cell to flag.
-        """
-        self._cell = cell
-
-    def is_mine(self) -> bool:
-        """
-        Check if the cell is a mine.
-
-        Returns:
-            bool: True if the cell is a mine, False otherwise
-        """
-        return self._cell.is_mine()
 
     def is_flagged(self) -> bool:
         """
@@ -47,15 +25,6 @@ class FlaggedCell:
         """
         return False
 
-    def unwraped(self) -> Cell:
-        """
-        Unwrap the cell.
-
-        Returns:
-            Cell: The unwrapped cell.
-        """
-        return self._cell.unwraped()
-
     def flagged(self) -> Cell:
         """
         Flag the cell.
@@ -72,7 +41,7 @@ class FlaggedCell:
         Returns:
             Cell: The contained cell revealed.
         """
-        return self._cell.revealed()
+        return self.unwraped().revealed()
 
     def __str__(self) -> str:
         """

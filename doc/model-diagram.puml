@@ -34,8 +34,8 @@ skinparam {
     + is_flagged() -> bool
     + is_revealed() -> bool
     + unwraped() -> Cell
-    + flagged() -> FlaggedCell
-    + revealed() -> RevealedCell
+    + flagged() -> Cell
+    + revealed() -> Cell
     + __str__() -> string
 !enddefinelong
 
@@ -70,8 +70,17 @@ package minesweeper {
         CELL_BODY()
     }
 
+    abstract CellWrapper {
+        - _cell
+        CELL_BODY()
+    }
+
+    abstract BaseCell {
+        CELL_BODY()
+    }
+
     class CellContainer {
-        - cell: Cell
+        - _cell: Cell
         + is_mine() -> bool
         + is_flagged() -> bool
         + is_revealed() -> bool
@@ -82,16 +91,17 @@ package minesweeper {
 
     Board o-- CellContainer
     CellContainer *- Cell
-    Cell <|-- EmptyCell
-    Cell <|-- MineCell
-    Cell <|-- FlaggedCell
-    Cell <|-- RevealedCell
-    MineCell --> RevealedCell
-    EmptyCell --> RevealedCell
-    MineCell --> FlaggedCell
-    EmptyCell --> FlaggedCell
-    Cell --* RevealedCell
-    Cell --* FlaggedCell
+    BaseCell <|-- EmptyCell
+    BaseCell <|-- MineCell
+    CellWrapper <|-- FlaggedCell
+    CellWrapper <|-- RevealedCell
+    Cell <|-- CellWrapper
+    Cell <|-- BaseCell
+    CellWrapper *- BaseCell
+    FlaggedCell -> RevealedCell
+    RevealedCell -> FlaggedCell
+    BaseCell --> FlaggedCell
+    BaseCell --> RevealedCell
 }
 
 @enduml

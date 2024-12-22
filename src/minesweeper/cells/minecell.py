@@ -1,9 +1,7 @@
-from minesweeper.cells.cell import Cell
-from minesweeper.cells.flaggedcell import FlaggedCell
-from minesweeper.cells.revealedcell import RevealedCell
+from minesweeper.cells.basecell import BaseCell
 
 
-class MineCell:
+class MineCell(BaseCell):
     """
     Represents a mine cell in the minesweeper game.
     """
@@ -16,51 +14,6 @@ class MineCell:
             bool: True
         """
         return True
-
-    def is_flagged(self) -> bool:
-        """
-        Check if the cell is flagged.
-
-        Returns:
-            bool: False
-        """
-        return False
-
-    def is_revealed(self) -> bool:
-        """
-        Check if the cell is revealed.
-
-        Returns:
-            bool: False
-        """
-        return False
-
-    def unwraped(self) -> Cell:
-        """
-        Unwrap the cell.
-
-        Returns:
-            Cell: self.
-        """
-        return self
-
-    def flagged(self) -> Cell:
-        """
-        Flag the cell.
-
-        Returns:
-            Cell: The cell flagged.
-        """
-        return FlaggedCell(self)
-
-    def revealed(self) -> Cell:
-        """
-        Reveal the cell.
-
-        Returns:
-            Cell: The cell revealed.
-        """
-        return RevealedCell(self)
 
     def __str__(self) -> str:
         """

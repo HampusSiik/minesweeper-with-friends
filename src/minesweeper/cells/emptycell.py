@@ -1,7 +1,7 @@
-from minesweeper.cells.minecell import MineCell
+from minesweeper.cells.basecell import BaseCell
 
 
-class EmptyCell(MineCell):
+class EmptyCell(BaseCell):
     """
     Represents an empty cell in the minesweeper game.
     """
