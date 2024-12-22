@@ -12,6 +12,9 @@ class Board:
     """
 
     _board: List[List[CellContainer]]
+    """
+    List of lists of CellContainers.
+    """
 
     def __init__(self):
         """
@@ -30,6 +33,24 @@ class Board:
         self._board = [
             [CellContainer.create_empty() for _ in range(cols)] for _ in range(rows)
         ]
+
+    def get_board(self) -> List[List[CellContainer]]:
+        """
+        Get the board.
+
+        Returns:
+            List[List[CellContainer]]: The board.
+        """
+        return self._board
+
+    def shape(self) -> Tuple[int, int]:
+        """
+        Get the shape of the board.
+
+        Returns:
+            Tuple[int, int]: Shape of the board.
+        """
+        return len(self._board), len(self._board[0])
 
     def place_mines(self, mines: int, start_position: Position) -> None:
         """

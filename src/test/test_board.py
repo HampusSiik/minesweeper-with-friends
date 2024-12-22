@@ -34,3 +34,11 @@ class TestBoard(unittest.TestCase):
                 if cell.is_mine():
                     mines += 1
         self.assertEqual(mines, expected_mines, "Mines placed incorrectly")
+
+    def test_shape(self):
+        rows = 12
+        cols = 10
+        self.board.generate_board(rows, cols)
+        self.assertEqual(
+            self.board.shape(), (rows, cols), "Shape not returned correctly"
+        )
