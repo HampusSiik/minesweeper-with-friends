@@ -88,3 +88,48 @@ class Board:
             for i in range(max(0, x - 1), min(len(self._board), x + 2))
             for j in range(max(0, y - 1), min(len(self._board[0]), y + 2))
         )
+
+    def show_nearby_mines(self) -> str:
+        """
+        String representation of the board with the number of mines around each cell.
+        And mines are represented by '*'.
+
+        Args:
+            position (Position): Position to check.
+        Returns:
+            str: String representation of the board with the number of mines around each cell.
+        """
+        return "\n".join(
+            self._show_nearby_mines_row(i) for i in range(len(self._board))
+        )
+
+    def _show_nearby_mines_cell(self, position: Position) -> str:
+        """
+        String representation of a single cell. If the cell is a mine, it returns '*'.
+        Otherwise, it returns the number of surrounding mines.
+
+        Args:
+            position (Position): Position to check.
+        Returns:
+            str: String representation of the cell.
+        """
+        x, y = position
+        return (
+            "*"
+            if self._board[x][y].is_mine()
+            else str(self.surrounding_mines(position))
+        )
+
+    def _show_nearby_mines_row(self, row: int) -> str:
+        """
+        String representation of a row of cells. If the cell is a mine, it returns '*'.
+        Otherwise, it returns the number of surrounding mines.
+
+        Args:
+            row int: Row number of the row to check.
+        Returns:
+            str: String representation of the row.
+        """
+        return "".join(
+            self._show_nearby_mines_cell((row, i)) for i in range(len(self._board[row]))
+        )
