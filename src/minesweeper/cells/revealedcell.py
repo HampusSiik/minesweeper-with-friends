@@ -7,10 +7,16 @@ class RevealedCell:
     """
 
     _cell: Cell
+    """
+    The revealed cell.
+    """
 
     def __init__(self, cell: Cell):
         """
-        Initializes a new instance of the RevealedCell class.
+        Initializes a new instance of the RevealedCell class containing the given cell.
+
+        Args:
+            cell (Cell): The cell to reveal.
         """
         self._cell = cell
 
