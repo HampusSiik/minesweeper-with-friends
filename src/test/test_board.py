@@ -42,3 +42,67 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(
             self._board.shape(), (rows, cols), "Shape not returned correctly"
         )
+
+    def test_get_board(self):
+        rows = 12
+        cols = 10
+        self._board.generate_board(rows, cols)
+        self.assertEqual(
+            self._board.get_board(), self._board._board, "Board not returned correctly"
+        )
+
+    def test_is_mine_empty(self):
+        self._board.generate_board(10, 10)
+        self._board.place_mines(10, (0, 0))
+        self.assertFalse(
+            self._board._board[0][0].is_mine(), "Mine not placed correctly"
+        )
+
+    def test_is_mine_mine(self):
+        self._board.generate_board(10, 10)
+        self._board.place_mines(99, (0, 0))
+        self.assertTrue(self._board._board[0][1].is_mine(), "Mine not placed correctly")
+
+    def test_is_flagged_empty(self):
+        self._board.generate_board(10, 10)
+        self.assertFalse(
+            self._board._board[0][0].is_flagged(), "Flag not placed correctly"
+        )
+
+    def test_is_flagged_flagged(self):
+        self._board.generate_board(10, 10)
+        self._board._board[0][0].toggle_flag()
+        self.assertTrue(
+            self._board._board[0][0].is_flagged(), "Flag not placed correctly"
+        )
+
+    def test_is_revealed_empty(self):
+        self._board.generate_board(10, 10)
+        self.assertFalse(
+            self._board._board[0][0].is_revealed(), "Cell not revealed correctly"
+        )
+
+    def test_is_revealed_revealed(self):
+        self._board.generate_board(10, 10)
+        self._board._board[0][0].reveal()
+        self.assertTrue(
+            self._board._board[0][0].is_revealed(), "Cell not revealed correctly"
+        )
+
+    def test_toggle_flag(self):
+        self._board.generate_board(10, 10)
+        self._board._board[0][0].toggle_flag()
+        self.assertTrue(
+            self._board._board[0][0].is_flagged(), "Flag not placed correctly"
+        )
+        self._board._board[0][0].toggle_flag()
+        self.assertFalse(
+            self._board._board[0][0].is_flagged(), "Flag not placed correctly"
+        )
+
+    def test_reveal(self):
+        self._board.generate_board(10, 10)
+        self._board._board[0][0].reveal()
+        self.assertTrue(
+            self._board._board[0][0].is_revealed(), "Cell not revealed correctly"
+        )

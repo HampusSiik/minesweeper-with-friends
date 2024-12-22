@@ -32,6 +32,12 @@ class CellContainer:
     def __str__(self) -> str:
         return str(self._cell)
 
+    def toggle_flag(self) -> None:
+        if self.is_flagged():
+            self._cell = self._cell.unwraped()
+        else:
+            self._cell = self._cell.flagged()
+
     @staticmethod
     def create_mine() -> CellContainer:
         return CellContainer(MineCell())

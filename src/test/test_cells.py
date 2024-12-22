@@ -143,6 +143,12 @@ class TestCellContainer(unittest.TestCase):
         self.cell_container.reveal()
         self.assertTrue(self.cell_container.is_revealed())
 
+    def test_toggle_flag(self):
+        self.cell_container.toggle_flag()
+        self.assertTrue(self.cell_container.is_flagged())
+        self.cell_container.toggle_flag()
+        self.assertFalse(self.cell_container.is_flagged())
+
 
 class TestCellContainerCreateMine(TestCellContainer):
 

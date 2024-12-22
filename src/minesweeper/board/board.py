@@ -1,9 +1,10 @@
-from typing import List, Tuple, Generator
+from typing import List, Tuple, Generator, Callable, TypeVar
 import random
 
 from minesweeper.cells.cellcontainer import CellContainer
 
 Position = Tuple[int, int]
+T = TypeVar("T")
 
 
 class Board:
@@ -154,3 +155,69 @@ class Board:
         return "".join(
             self._show_nearby_mines_cell((row, i)) for i in range(len(self._board[row]))
         )
+
+    def _function_on_position(
+        self, position: Position, function: Callable[[CellContainer], T]
+    ) -> T:
+        """
+        Apply a function to a position.
+
+        Args:
+            position (Position): Position to apply the function to.
+            function (Callable[[CellContainer], T]): Function to apply.
+        Returns:
+            T: Result of applying the function.
+        """
+        x, y = position
+        return function(self._board[x][y])
+
+    def is_mine(self, position: Position) -> bool:
+        """
+        Check if a position is a mine.
+
+        Args:
+            position (Position): Position to check.
+        Returns:
+            bool: True if the position is a mine, False otherwise.
+        """
+        return self._function_on_position(position, CellContainer.is_mine)
+
+    def is_flagged(self, position: Position) -> bool:
+        """
+        Check if a position is flagged.
+
+        Args:
+            position (Position): Position to check.
+        Returns:
+            bool: True if the position is flagged, False otherwise.
+        """
+        return self._function_on_position(position, CellContainer.is_flagged)
+
+    def is_revealed(self, position: Position) -> bool:
+        """
+        Check if a position is revealed.
+
+        Args:
+            position (Position): Position to check.
+        Returns:
+            bool: True if the position is revealed, False otherwise.
+        """
+        return self._function_on_position(position, CellContainer.is_revealed)
+
+    def toggle_flag(self, position: Position) -> None:
+        """
+        Toggle the flag on a position.
+
+        Args:
+            position (Position): Position to toggle the flag on.
+        """
+        self._function_on_position(position, CellContainer.toggle_flag)
+
+    def reveal(self, position: Position) -> None:
+        """
+        Reveal a position.
+
+        Args:
+            position (Position): Position to reveal.
+        """
+        self._function_on_position(position, CellContainer.reveal)

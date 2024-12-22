@@ -50,6 +50,10 @@ package minesweeper {
             + show_board() -> str
             + surrounding_mines(position: Position) -> int
             + show_nearby_mines() -> str
+            + is_mine(position: Position) -> bool
+            + is_flagged(position: Position) -> bool
+            + is_revealed(position: Position) -> bool
+            + toggle_flag(position: Position) -> None
         }
 
     }
@@ -93,6 +97,9 @@ package minesweeper {
             + unwraped() -> Cell
             + flag() -> None
             + reveal() -> None
+            + toggle_flag() -> None
+            # create_mine() -> CellContainer
+            # create_empty() -> CellContainer
         }
 
         CellContainer *- Cell
@@ -109,6 +116,16 @@ package minesweeper {
         BaseCell --> RevealedCell
 
     }
+
+    package game {
+
+        class MineSweeper {
+            - _board: Board
+        }
+
+    }
+
+    MineSweeper *- Board
 
     Board o-- CellContainer
 
