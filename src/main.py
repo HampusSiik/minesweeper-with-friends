@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from minesweeper import board
+from minesweeper.board import board
 
 
 def main():
