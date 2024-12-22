@@ -1,40 +1,73 @@
 import unittest
+from abc import ABC, abstractmethod
 
 from minesweeper.cells import (
+    cell,
     emptycell,
     minecell,
     cellcontainer,
-    cell,
     revealedcell,
     flaggedcell,
 )
 
 
-class TestEmptyCell(unittest.TestCase):
+class TestCell(ABC):
 
-    def test_create(self):
-        try:
-            emptycell.EmptyCell()
-            self.assertTrue(True)
-        except Exception:
-            self.fail("Could not create EmptyCell")
+    cell: cell.Cell
+
+    @abstractmethod
+    def setUp(self): ...
+
+    def test_is_mine_returns_bool(self):
+        self.assertTrue(isinstance(self.cell.is_mine(), bool))
+
+    def test_is_flagged_returns_bool(self):
+        self.assertTrue(isinstance(self.cell.is_flagged(), bool))
+
+    def test_is_revealed_returns_bool(self):
+        self.assertTrue(isinstance(self.cell.is_revealed(), bool))
+
+    def test_flagged_returns_flagged_cell(self):
+        self.assertTrue(isinstance(self.cell.flagged(), flaggedcell.FlaggedCell))
+
+
+class TestEmptyCell(unittest.TestCase, TestCell):
+
+    def setUp(self):
+        self.cell = emptycell.EmptyCell()
 
     def test_is_mine(self):
-        ec = emptycell.EmptyCell()
-        self.assertFalse(ec.is_mine())
+        self.assertFalse(self.cell.is_mine())
 
     def test_is_flagged(self):
-        ec = emptycell.EmptyCell()
-        self.assertFalse(ec.is_flagged())
+        self.assertFalse(self.cell.is_flagged())
 
     def test_is_revealed(self):
-        ec = emptycell.EmptyCell()
-        self.assertFalse(ec.is_revealed())
+        self.assertFalse(self.cell.is_revealed())
 
     def test_flagged(self):
-        ec = emptycell.EmptyCell()
-        self.assertTrue(ec.flagged().is_flagged())
+        self.assertTrue(self.cell.flagged().is_flagged())
 
     def test_unwrap(self):
-        ec = emptycell.EmptyCell()
-        self.assertTrue(ec is ec.unwrap())
+        self.assertTrue(self.cell is self.cell.unwrap())
+
+
+class TestMineCell(unittest.TestCase, TestCell):
+
+    def setUp(self):
+        self.cell = minecell.MineCell()
+
+    def test_is_mine(self):
+        self.assertTrue(self.cell.is_mine())
+
+    def test_is_flagged(self):
+        self.assertFalse(self.cell.is_flagged())
+
+    def test_is_revealed(self):
+        self.assertFalse(self.cell.is_revealed())
+
+    def test_flagged(self):
+        self.assertTrue(self.cell.flagged().is_flagged())
+
+    def test_unwrap(self):
+        self.assertTrue(self.cell is self.cell.unwrap())
