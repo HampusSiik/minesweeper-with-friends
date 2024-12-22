@@ -32,69 +32,69 @@ skinparam {
 package minesweeper {
 
     class Board {
-        -board: List(List(CellContainer))
+        - board: List(List(CellContainer))
     }
 
     protocol Cell {
-        +is_mine() -> bool
-        +is_flagged() -> bool
-        +is_revealed() -> bool
-        +unwrap() -> Cell
-        +flagged() -> FlaggedCell
-        +revealed() -> RevealedCell
-        +__str__() -> string
+        + is_mine() -> bool
+        + is_flagged() -> bool
+        + is_revealed() -> bool
+        + unwraped() -> Cell
+        + flagged() -> FlaggedCell
+        + revealed() -> RevealedCell
+        + __str__() -> string
     }
 
     class EmptyCell {
-        +is_mine() -> bool: False
-        +is_flagged() -> bool: False
-        +is_revealed() -> bool: False
-        +unwrap() -> Cell: self
-        +flagged() -> FlaggedCell
-        +revealed() -> RevealedCell
-        +__str__() -> string
+        + is_mine() -> bool: False
+        + is_flagged() -> bool: False
+        + is_revealed() -> bool: False
+        + unwraped() -> Cell: self
+        + flagged() -> FlaggedCell
+        + revealed() -> RevealedCell
+        + __str__() -> string
     }
 
     class MineCell {
-        +is_mine() -> bool: True
-        +is_flagged() -> bool: False
-        +is_revealed() -> bool: False
-        +unwrap() -> Cell: self
-        +flagged() -> FlaggedCell
-        +revealed() -> RevealedCell
-        +__str__() -> string
+        + is_mine() -> bool: True
+        + is_flagged() -> bool: False
+        + is_revealed() -> bool: False
+        + unwraped() -> Cell: self
+        + flagged() -> FlaggedCell
+        + revealed() -> RevealedCell
+        + __str__() -> string
     }
 
     class FlaggedCell {
-        -cell: Cell
-        +is_mine() -> bool
-        +is_flagged() -> bool: True
-        +is_revealed() -> bool: False
-        +unwrap() -> Cell
-        +flagged() -> FlaggedCell
-        +revealed() -> RevealedCell
-        +__str__() -> string
+        - cell: Cell
+        + is_mine() -> bool
+        + is_flagged() -> bool: True
+        + is_revealed() -> bool: False
+        + unwraped() -> Cell
+        + flagged() -> FlaggedCell
+        + revealed() -> RevealedCell
+        + __str__() -> string
     }
 
     class RevealedCell {
-        -cell: Cell
-        +is_mine() -> bool
-        +is_flagged() -> bool: False
-        +is_revealed() -> bool: True
-        +unwrap() -> Cell
-        +flagged() -> FlaggedCell
-        +revealed() -> RevealedCell
-        +__str__() -> string
+        - cell: Cell
+        + is_mine() -> bool
+        + is_flagged() -> bool: False
+        + is_revealed() -> bool: True
+        + unwraped() -> Cell
+        + flagged() -> FlaggedCell
+        + revealed() -> RevealedCell
+        + __str__() -> string
     }
 
     class CellContainer {
-        -cell: Cell
-        +is_mine() -> bool
-        +is_flagged() -> bool
-        +is_revealed() -> bool
-        +unwraped() -> Cell
-        +flag() -> None
-        +reveal() -> None
+        - cell: Cell
+        + is_mine() -> bool
+        + is_flagged() -> bool
+        + is_revealed() -> bool
+        + unwraped() -> Cell
+        + flag() -> None
+        + reveal() -> None
     }
 
     Board o-- CellContainer
