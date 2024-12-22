@@ -76,7 +76,7 @@ package minesweeper {
     }
 
     Board o-- CellContainer
-    CellContainer -> Cell
+    CellContainer *- Cell
     Cell <|-- EmptyCell
     Cell <|-- MineCell
     Cell <|-- FlaggedCell
@@ -85,6 +85,8 @@ package minesweeper {
     EmptyCell --> RevealedCell
     MineCell --> FlaggedCell
     EmptyCell --> FlaggedCell
+    Cell --* RevealedCell
+    Cell --* FlaggedCell
 }
 
 @enduml
