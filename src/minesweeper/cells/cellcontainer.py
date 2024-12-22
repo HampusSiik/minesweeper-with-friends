@@ -29,6 +29,9 @@ class CellContainer:
     def reveal(self) -> None:
         self._cell = self._cell.revealed()
 
+    def __str__(self) -> str:
+        return str(self._cell)
+
     @staticmethod
     def create_mine() -> CellContainer:
         return CellContainer(MineCell())

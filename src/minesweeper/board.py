@@ -58,9 +58,7 @@ class Board:
         Returns:
             str: String representation of the board.
         """
-        return "\n".join(
-            ["".join([str(cell.unwraped()) for cell in row]) for row in self._board]
-        )
+        return "\n".join(["".join([str(cell) for cell in row]) for row in self._board])
 
     def surrounding_mines(self, position: Position) -> int:
         """
