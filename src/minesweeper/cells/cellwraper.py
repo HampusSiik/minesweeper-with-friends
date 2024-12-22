@@ -85,6 +85,6 @@ class CellWrapper(ABC):
         String representation of the cell.
 
         Returns:
-            str: "R"
+            str: "F" for flagged cell, "R" for revealed cell
         """
         pass
