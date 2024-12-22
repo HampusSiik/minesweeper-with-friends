@@ -19,16 +19,16 @@ class Board:
         """
         self._board = [[]]
 
-    def generate_board(self, width: int, height: int) -> None:
+    def generate_board(self, rows: int, cols: int) -> None:
         """
         Generate an empty board with the given dimensions.
 
         Args:
-            width (int): Width of the board.
-            height (int): Height of the board.
+            rows (int): Width of the board.
+            cols (int): Height of the board.
         """
         self._board = [
-            [CellContainer.create_empty() for _ in range(width)] for _ in range(height)
+            [CellContainer.create_empty() for _ in range(cols)] for _ in range(rows)
         ]
 
     def place_mines(self, mines: int, start_position: Position) -> None:
