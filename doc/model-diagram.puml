@@ -43,6 +43,11 @@ package minesweeper {
 
     class Board {
         - board: List(List(CellContainer))
+        + generate_board(width: int, height: int) -> None
+        + place_mines(mines: int, start_position: Position) -> None
+        + show_board() -> str
+        + surrounding_mines(position: Position) -> int
+        + show_nearby_mines() -> str
     }
 
     protocol Cell {
