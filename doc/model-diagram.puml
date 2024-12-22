@@ -29,6 +29,16 @@ skinparam {
 !define Optional(T) Optional[T]
 !define Dict(T, U) Dict[T, U]
 
+!definelong CELL_BODY()
+    + is_mine() -> bool
+    + is_flagged() -> bool
+    + is_revealed() -> bool
+    + unwraped() -> Cell
+    + flagged() -> FlaggedCell
+    + revealed() -> RevealedCell
+    + __str__() -> string
+!enddefinelong
+
 package minesweeper {
 
     class Board {
@@ -36,55 +46,23 @@ package minesweeper {
     }
 
     protocol Cell {
-        + is_mine() -> bool
-        + is_flagged() -> bool
-        + is_revealed() -> bool
-        + unwraped() -> Cell
-        + flagged() -> FlaggedCell
-        + revealed() -> RevealedCell
-        + __str__() -> string
+        CELL_BODY()
     }
 
     class EmptyCell {
-        + is_mine() -> bool: False
-        + is_flagged() -> bool: False
-        + is_revealed() -> bool: False
-        + unwraped() -> Cell: self
-        + flagged() -> FlaggedCell
-        + revealed() -> RevealedCell
-        + __str__() -> string
+        CELL_BODY()
     }
 
     class MineCell {
-        + is_mine() -> bool: True
-        + is_flagged() -> bool: False
-        + is_revealed() -> bool: False
-        + unwraped() -> Cell: self
-        + flagged() -> FlaggedCell
-        + revealed() -> RevealedCell
-        + __str__() -> string
+        CELL_BODY()
     }
 
     class FlaggedCell {
-        - cell: Cell
-        + is_mine() -> bool
-        + is_flagged() -> bool: True
-        + is_revealed() -> bool: False
-        + unwraped() -> Cell
-        + flagged() -> FlaggedCell
-        + revealed() -> RevealedCell
-        + __str__() -> string
+        CELL_BODY()
     }
 
     class RevealedCell {
-        - cell: Cell
-        + is_mine() -> bool
-        + is_flagged() -> bool: False
-        + is_revealed() -> bool: True
-        + unwraped() -> Cell
-        + flagged() -> FlaggedCell
-        + revealed() -> RevealedCell
-        + __str__() -> string
+        CELL_BODY()
     }
 
     class CellContainer {
@@ -103,6 +81,10 @@ package minesweeper {
     Cell <|-- MineCell
     Cell <|-- FlaggedCell
     Cell <|-- RevealedCell
+    MineCell --> RevealedCell
+    EmptyCell --> RevealedCell
+    MineCell --> FlaggedCell
+    EmptyCell --> FlaggedCell
 }
 
 @enduml
