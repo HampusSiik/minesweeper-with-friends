@@ -4,17 +4,69 @@ from typing import Protocol, runtime_checkable
 
 @runtime_checkable
 class Cell(Protocol):
+    """
+    A cell in the minesweeper game.
+    """
 
-    def is_mine(self) -> bool: ...
+    def is_mine(self) -> bool:
+        """
+        Returns True if the cell is a mine, False otherwise.
 
-    def is_flagged(self) -> bool: ...
+        Returns:
+            bool: True if the cell is a mine, False otherwise.
+        """
+        ...
 
-    def is_revealed(self) -> bool: ...
+    def is_flagged(self) -> bool:
+        """
+        Returns True if the cell is flagged, False otherwise.
 
-    def unwrap(self) -> Cell: ...
+        Returns:
+            bool: True if the cell is flagged, False otherwise.
+        """
+        ...
 
-    def flagged(self) -> Cell: ...
+    def is_revealed(self) -> bool:
+        """
+        Returns True if the cell is revealed, False otherwise.
 
-    def revealed(self) -> Cell: ...
+        Returns:
+            bool: True if the cell is revealed, False otherwise
+        """
+        ...
 
-    def __str__(self) -> str: ...
+    def unwraped(self) -> Cell:
+        """
+        Returns the unwrapped cell.
+
+        Returns:
+            Cell: The unwrapped cell.
+        """
+        ...
+
+    def flagged(self) -> Cell:
+        """
+        Returns a flagged cell.
+
+        Returns:
+            Cell: A flagged cell.
+        """
+        ...
+
+    def revealed(self) -> Cell:
+        """
+        Returns a revealed cell.
+
+        Returns:
+            Cell: A revealed cell.
+        """
+        ...
+
+    def __str__(self) -> str:
+        """
+        Returns a string representation of the cell.
+
+        Returns:
+            str: A string representation of the cell.
+        """
+        ...

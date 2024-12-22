@@ -21,7 +21,7 @@ class CellContainer:
         return self._cell.is_revealed()
 
     def unwraped(self) -> Cell:
-        return self._cell.unwrap()
+        return self._cell.unwraped()
 
     def flag(self) -> None:
         self._cell = self._cell.flagged()

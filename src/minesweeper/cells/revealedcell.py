@@ -17,8 +17,8 @@ class RevealedCell:
     def is_revealed(self) -> bool:
         return True
 
-    def unwrap(self) -> Cell:
-        return self._cell.unwrap()
+    def unwraped(self) -> Cell:
+        return self._cell.unwraped()
 
     def flagged(self) -> Cell:
         return self._cell.flagged()

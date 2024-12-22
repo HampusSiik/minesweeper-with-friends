@@ -1,4 +1,5 @@
 import unittest
+from typing import Any
 from abc import ABC, abstractmethod
 
 from minesweeper.cells import (
@@ -17,6 +18,9 @@ class TestCell(ABC):
 
     @abstractmethod
     def setUp(self): ...
+
+    @abstractmethod
+    def assertTrue(self, expr: Any, msg: Any = None): ...
 
     def test_is_mine_returns_bool(self):
         self.assertTrue(isinstance(self.cell.is_mine(), bool))
@@ -54,8 +58,8 @@ class TestEmptyCell(unittest.TestCase, TestCell):
     def test_is_revealed(self):
         self.assertFalse(self.cell.is_revealed())
 
-    def test_unwrap(self):
-        self.assertTrue(self.cell is self.cell.unwrap())
+    def test_unwraped(self):
+        self.assertTrue(self.cell is self.cell.unwraped())
 
 
 class TestMineCell(unittest.TestCase, TestCell):
@@ -72,8 +76,8 @@ class TestMineCell(unittest.TestCase, TestCell):
     def test_is_revealed(self):
         self.assertFalse(self.cell.is_revealed())
 
-    def test_unwrap(self):
-        self.assertTrue(self.cell is self.cell.unwrap())
+    def test_unwraped(self):
+        self.assertTrue(self.cell is self.cell.unwraped())
 
 
 class TestFlaggedCellEmpty(unittest.TestCase, TestCell):
@@ -82,7 +86,7 @@ class TestFlaggedCellEmpty(unittest.TestCase, TestCell):
         self.cell = flaggedcell.FlaggedCell(emptycell.EmptyCell())
 
     def test_is_mine(self):
-        self.assertTrue(self.cell.is_mine() == self.cell.unwrap().is_mine())
+        self.assertTrue(self.cell.is_mine() == self.cell.unwraped().is_mine())
 
     def test_is_flagged(self):
         self.assertTrue(self.cell.is_flagged())
@@ -91,7 +95,7 @@ class TestFlaggedCellEmpty(unittest.TestCase, TestCell):
         self.assertFalse(self.cell.is_revealed())
 
     def test_unwrap(self):
-        self.assertTrue(self.cell is not self.cell.unwrap())
+        self.assertTrue(self.cell is not self.cell.unwraped())
 
 
 class TestFlaggedCellMine(unittest.TestCase, TestCell):

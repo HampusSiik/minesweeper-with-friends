@@ -16,7 +16,7 @@ class EmptyCell:
     def is_revealed(self) -> bool:
         return False
 
-    def unwrap(self) -> Cell:
+    def unwraped(self) -> Cell:
         return self
 
     def flagged(self) -> Cell:
