@@ -122,6 +122,11 @@ package minesweeper {
 
         class MineSweeper {
             - _board: Board
+            + shape() -> Tuple(int, int)
+            + game_lost() -> bool
+            + game_won() -> bool
+            + left_click_cell(position: Position) -> None
+            + right_click_cell(position: Position) -> None
         }
 
     }
