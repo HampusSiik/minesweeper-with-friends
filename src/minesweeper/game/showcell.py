@@ -82,3 +82,20 @@ class ShowCell:
             bool: True if the cell is revealed, False otherwise.
         """
         return self._is_revealed
+
+    def __str__(self) -> str:
+        """
+        Get the string representation of the cell.
+
+        Returns:
+            str: String representation of the cell.
+        """
+        if self._is_revealed:
+            if self._is_mine:
+                return "*"
+            if self._adjacent_mines:
+                return str(self._adjacent_mines)
+            return " "
+        if self._is_flagged:
+            return "F"
+        return "#"

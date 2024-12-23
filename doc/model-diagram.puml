@@ -146,6 +146,7 @@ package minesweeper {
             + is_mine() -> Optional(bool)
             + is_flagged() -> bool
             + is_revealed() -> bool
+            + __str__() -> str
         }
 
         MineSweeper --> ShowBoard
