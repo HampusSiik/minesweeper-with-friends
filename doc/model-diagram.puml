@@ -111,7 +111,7 @@ package minesweeper {
         CellWrapper <|-- RevealedCell
         Cell <|-- CellWrapper
         Cell <|-- BaseCell
-        CellWrapper *- BaseCell
+        Cell --* CellWrapper
         FlaggedCell -> RevealedCell
         RevealedCell -> FlaggedCell
         BaseCell --> FlaggedCell

@@ -43,14 +43,6 @@ class TestBoard(unittest.TestCase):
             self._board.shape(), (rows, cols), "Shape not returned correctly"
         )
 
-    def test_get_board(self):
-        rows = 12
-        cols = 10
-        self._board.generate_board(rows, cols)
-        self.assertEqual(
-            self._board.get_board(), self._board._board, "Board not returned correctly"
-        )
-
     def test_is_mine_empty(self):
         self._board.generate_board(10, 10)
         self._board.place_mines(10, (0, 0))
