@@ -1,6 +1,7 @@
 from typing import Tuple
 from minesweeper.position import Position
 from minesweeper.board.board import Board
+from minesweeper.game.showboard import ShowBoard
 
 
 class Minesweeper:
@@ -99,3 +100,12 @@ class Minesweeper:
         """
         self._board.generate_board(rows, columns)
         self._mines = mines
+
+    def get_show_board(self) -> ShowBoard:
+        """
+        Get the show board.
+
+        Returns:
+            ShowBoard: Show board.
+        """
+        return ShowBoard(self._board)
