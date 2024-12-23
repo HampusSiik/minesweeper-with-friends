@@ -1,0 +1,35 @@
+@startuml api
+
+skinparam {
+
+    DefaultFontColor White
+    DefaultFontName Monospace
+    DefaultFontSize 16
+    DefaultBorderColor White
+    ArrowColor Gray
+
+    BackgroundColor Black
+    BorderColor Gray
+    FontColor White
+
+    class {
+        BackgroundColor Black
+        BorderColor Gray
+    }
+
+    package {
+        BackgroundColor Black
+        BorderColor Gray
+    }
+
+}
+
+package minesweeper_api {
+
+    class API {
+
+    }
+
+}
+
+@enduml
