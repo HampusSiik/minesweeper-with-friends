@@ -26,7 +26,11 @@ class Minesweeper:
         )
 
     def left_click_cell(self, position: Position) -> None:
-        return
+        if self.board.is_flagged(position):
+            return
+        self.board.reveal(position)
 
     def right_click_cell(self, position: Position) -> None:
-        return
+        if self.board.is_revealed(position):
+            return
+        self.board.toggle_flag(position)
