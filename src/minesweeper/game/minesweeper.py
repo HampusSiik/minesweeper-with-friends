@@ -14,11 +14,18 @@ class Minesweeper:
     Minesweeper board.
     """
 
+    _mines: int
+    """
+    Number of mines on the board.
+    """
+
     def __init__(self):
         """
         Initialize the game.
         """
         self._board = Board()
+
+        self._mines = 0
 
     def shape(self) -> Tuple[int, int]:
         """
@@ -78,7 +85,7 @@ class Minesweeper:
             return
         self._board.toggle_flag(position)
 
-    def generate_board(self, rows: int, columns: int) -> None:
+    def generate_game(self, rows: int, columns: int, mines: int) -> None:
         """
         Generate a board.
 
@@ -87,6 +94,7 @@ class Minesweeper:
             columns (int): Number of columns.
         """
         self._board.generate_board(rows, columns)
+        self._mines = mines
 
     def place_mines(self, num_mines: int, start_position: Position) -> None:
         """

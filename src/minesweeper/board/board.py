@@ -223,3 +223,12 @@ class Board:
         return [
             (x, y) for x in range(len(self._board)) for y in range(len(self._board[0]))
         ]
+
+    def mined(self) -> bool:
+        """
+        Check if the board is mined.
+
+        Returns:
+            bool: True if the board is mined, False otherwise.
+        """
+        return any(self.is_mine(position) for position in self.all_positions())
