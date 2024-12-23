@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Dict
 
 
 class ShowCell:
@@ -99,3 +99,17 @@ class ShowCell:
         if self._is_flagged:
             return "F"
         return "#"
+
+    def to_dict(self) -> Dict[str, Optional[bool | int]]:
+        """
+        Convert the cell to a dictionary.
+
+        Returns:
+            dict: Dictionary representation of the cell.
+        """
+        return {
+            "adjacent_mines": self._adjacent_mines,
+            "is_mine": self._is_mine,
+            "is_flagged": self._is_flagged,
+            "is_revealed": self._is_revealed,
+        }
