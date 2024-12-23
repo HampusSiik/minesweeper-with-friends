@@ -113,8 +113,6 @@ package minesweeper {
         Cell <|-- CellWrapper
         Cell <|-- BaseCell
         Cell --* CellWrapper
-        FlaggedCell -> RevealedCell
-        RevealedCell -> FlaggedCell
         BaseCell --> FlaggedCell
         BaseCell --> RevealedCell
 
@@ -153,6 +151,8 @@ package minesweeper {
         MineSweeper --> ShowBoard
 
         ShowBoard o- ShowCell
+
+        Board <-- ShowBoard
 
     }
 
