@@ -1,4 +1,5 @@
-from minesweeper.cells.cell import Cell
+from minesweeper.cells.basecell import Cell
+from minesweeper.cells.basecell import BaseCell
 from abc import ABC, abstractmethod
 
 
@@ -7,12 +8,12 @@ class CellWrapper(ABC):
     Represents a cell wrapper in the minesweeper game.
     """
 
-    _cell: Cell
+    _cell: BaseCell
     """
     The wrapped cell.
     """
 
-    def __init__(self, cell: Cell):
+    def __init__(self, cell: BaseCell):
         """
         Initializes a new instance of the CellWrapper class containing the given cell.
 
