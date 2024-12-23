@@ -98,3 +98,24 @@ class TestBoard(unittest.TestCase):
         self.assertTrue(
             self._board._board[0][0].is_revealed(), "Cell not revealed correctly"
         )
+
+    def test_all_positions(self):
+        rows, cols = 10, 10
+        cells = rows * cols
+        self._board.generate_board(rows, cols)
+        positions = self._board.all_positions()
+        self.assertEqual(len(positions), cells, "All positions not returned correctly")
+        for position in positions:
+            self.assertTrue(
+                0 <= position[0] < 10 and 0 <= position[1] < 10,
+                "Position not in bounds",
+            )
+        self.assertEqual(
+            len(set(positions)), cells, "Duplicate positions returned in all_positions"
+        )
+
+    def test_mined(self):
+        self._board.generate_board(10, 10)
+        self.assertFalse(self._board.mined(), "Mined returned incorrectly")
+        self._board.place_mines(10, (0, 0))
+        self.assertTrue(self._board.mined(), "Mined returned incorrectly")
