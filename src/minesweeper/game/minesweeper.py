@@ -71,7 +71,7 @@ class Minesweeper:
             position (Position): Position to left click.
         """
         if self._board.mines() != self._mines:
-            self.place_mines(self._mines, position)
+            self._board.place_mines(self._mines, position)
         if self._board.is_flagged(position):
             return
         self._board.reveal(position)
@@ -83,6 +83,8 @@ class Minesweeper:
         Args:
             position (Position): Position to right click.
         """
+        if self._board.mines() != self._mines:
+            return
         if self._board.is_revealed(position):
             return
         self._board.toggle_flag(position)
@@ -97,13 +99,3 @@ class Minesweeper:
         """
         self._board.generate_board(rows, columns)
         self._mines = mines
-
-    def place_mines(self, num_mines: int, start_position: Position) -> None:
-        """
-        Place mines on the board.
-
-        Args:
-            num_mines (int): Number of mines to place.
-            start_position (Position): Position to avoid placing mines.
-        """
-        self._board.place_mines(num_mines, start_position)
