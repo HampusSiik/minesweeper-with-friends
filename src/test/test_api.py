@@ -1,6 +1,6 @@
 import unittest
 from flask.app import AppContext
-from flask_socketio import SocketIOTestClient, emit
+from flask_socketio import SocketIOTestClient
 from flask.testing import FlaskClient
 from minesweeper_api.api_app import (
     app,

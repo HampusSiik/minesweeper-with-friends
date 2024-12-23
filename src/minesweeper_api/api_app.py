@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_socketio import SocketIO, join_room, leave_room, emit
+from flask_socketio import SocketIO, join_room, emit
 from typing import Dict, Any, Optional
 from minesweeper.game.minesweeper import Minesweeper
 from minesweeper.position import Position, from_dict
