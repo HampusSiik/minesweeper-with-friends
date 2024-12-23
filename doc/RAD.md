@@ -12,7 +12,7 @@ As a gamer with friends I want to be able to play MineSweeper online with them.
 
 #### Definition of done
 
-- [ ] Implement the game
+- [x] Implement the game
 - [ ] Make a functional web API
 - [ ] Implement a web user interface
 - [ ] Make it possible to host a game
