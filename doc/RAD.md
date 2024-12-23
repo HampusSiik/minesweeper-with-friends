@@ -48,8 +48,8 @@ As an API developer I need an implementation of the game to make it possible to 
 
 #### Definition of done
 
-- [ ] Make it possible to create a game
-- [ ] Make it possible to click on a cell
+- [x] Make it possible to create a game
+- [x] Make it possible to click on a cell
 - [ ] Make it possible to get the game state
 
 ### Host a game
