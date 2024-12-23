@@ -3,20 +3,23 @@ from flask_socketio import SocketIO, join_room, emit
 from typing import Dict, Any, Optional
 from minesweeper.game.minesweeper import Minesweeper
 from minesweeper.position import Position, from_dict
+from os import environ
 
 # Flask app setup
 app = Flask(__name__)
 """
 The `app` object is the Flask application that will handle HTTP requests.
 """
-app.config["SECRET_KEY"] = "supersecretkey"
-socketio = SocketIO(app, cors_allowed_origins="*")
+app.config["SECRET_KEY"] = environ.get("SECRET_KEY", "my_secret")
+socketio = SocketIO(app, cors_allowed_origins=environ.get("CORS_ALLOWED_ORIGINS", "*"))
 """
 The `socketio` object is the Flask-SocketIO extension that will handle WebSocket connections.
 """
 
-# Store active games
 games: Dict[str, Minesweeper] = {}
+"""
+The `games` dictionary stores the active Minesweeper games.
+"""
 
 
 @app.route("/create_game", methods=["POST"])
