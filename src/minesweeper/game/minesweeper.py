@@ -34,3 +34,9 @@ class Minesweeper:
         if self.board.is_revealed(position):
             return
         self.board.toggle_flag(position)
+
+    def generate_board(self, rows: int, columns: int) -> None:
+        self.board.generate_board(rows, columns)
+
+    def place_mines(self, num_mines: int, position: Position) -> None:
+        self.board.place_mines(num_mines, position)
