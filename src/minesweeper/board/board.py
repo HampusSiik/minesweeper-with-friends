@@ -1,9 +1,9 @@
 from typing import List, Tuple, Generator, Callable, TypeVar
 import random
 
+from minesweeper.position import Position
 from minesweeper.cells.cellcontainer import CellContainer
 
-Position = Tuple[int, int]
 T = TypeVar("T")
 
 
@@ -34,15 +34,6 @@ class Board:
         self._board = [
             [CellContainer.create_empty() for _ in range(cols)] for _ in range(rows)
         ]
-
-    def get_board(self) -> List[List[CellContainer]]:
-        """
-        Get the board.
-
-        Returns:
-            List[List[CellContainer]]: The board.
-        """
-        return self._board
 
     def shape(self) -> Tuple[int, int]:
         """
@@ -221,3 +212,14 @@ class Board:
             position (Position): Position to reveal.
         """
         self._function_on_position(position, CellContainer.reveal)
+
+    def all_positions(self) -> List[Position]:
+        """
+        Get all positions on the board.
+
+        Returns:
+            List[Position]: All positions on the board.
+        """
+        return [
+            (x, y) for x in range(len(self._board)) for y in range(len(self._board[0]))
+        ]
