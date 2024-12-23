@@ -130,7 +130,29 @@ package minesweeper {
             + left_click_cell(position: Position) -> None
             + right_click_cell(position: Position) -> None
             + generate_game(rows, cols, mines) -> None
+            + get_show_board() -> ShowBoard
         }
+
+        class ShowBoard {
+            - _board: List(List(ShowCell))
+            + get_board() -> List(List(ShowCell))
+            # from_board(board: Board) -> ShowBoard
+        }
+
+        class ShowCell {
+            - _adjacent_mines: Optional(int)
+            - _is_mine: Optional(bool)
+            - _is_flagged: bool
+            - _is_revealed: bool
+            + adjacent_mines() -> Optional(int)
+            + is_mine() -> Optional(bool)
+            + is_flagged() -> bool
+            + is_revealed() -> bool
+        }
+
+        MineSweeper --> ShowBoard
+
+        ShowBoard o- ShowCell
 
     }
 
