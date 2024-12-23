@@ -54,6 +54,7 @@ package minesweeper {
             + is_flagged(position: Position) -> bool
             + is_revealed(position: Position) -> bool
             + toggle_flag(position: Position) -> None
+            + shape() -> Tuple(int, int)
         }
 
     }
