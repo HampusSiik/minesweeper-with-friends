@@ -42,7 +42,7 @@ As a web interface developer I need an API to get information about the game sta
 - [ ] Make it possible to send click commands to the game
 - [ ] Make it possible to have multiple users connected to the same game
 
-### Implement the game
+### *Implement the game*
 
 As an API developer I need an implementation of the game to make it possible to send and recieve commands.
 
@@ -50,7 +50,7 @@ As an API developer I need an implementation of the game to make it possible to 
 
 - [x] Make it possible to create a game
 - [x] Make it possible to click on a cell
-- [ ] Make it possible to get the game state
+- [x] Make it possible to get the game state
 
 ### Host a game
 
