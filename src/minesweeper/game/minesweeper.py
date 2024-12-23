@@ -70,6 +70,8 @@ class Minesweeper:
         Args:
             position (Position): Position to left click.
         """
+        if self._board.mines() != self._mines:
+            self.place_mines(self._mines, position)
         if self._board.is_flagged(position):
             return
         self._board.reveal(position)

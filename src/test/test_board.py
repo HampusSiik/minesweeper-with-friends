@@ -114,8 +114,8 @@ class TestBoard(unittest.TestCase):
             len(set(positions)), cells, "Duplicate positions returned in all_positions"
         )
 
-    def test_mined(self):
+    def test_mines(self):
         self._board.generate_board(10, 10)
-        self.assertFalse(self._board.mined(), "Mined returned incorrectly")
+        self.assertEqual(self._board.mines(), 0, "Mines returned incorrectly")
         self._board.place_mines(10, (0, 0))
-        self.assertTrue(self._board.mined(), "Mined returned incorrectly")
+        self.assertEqual(self._board.mines(), 10, "Mines returned incorrectly")

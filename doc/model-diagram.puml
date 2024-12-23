@@ -56,7 +56,7 @@ package minesweeper {
             + toggle_flag(position: Position) -> None
             + shape() -> Tuple(int, int)
             + all_positions() -> List(Position)
-            + mined() -> bool
+            + mines() -> int
         }
 
     }
