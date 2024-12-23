@@ -13,7 +13,7 @@ As a gamer with friends I want to be able to play MineSweeper online with them.
 #### Definition of done
 
 - [x] Implement the game
-- [ ] Make a functional web API
+- [x] Make a functional web API
 - [ ] Implement a web user interface
 - [ ] Make it possible to host a game
 - [ ] Make it possible to join a game
@@ -32,15 +32,15 @@ As a user I want to be able to play the game in my webbrowser.
 - [ ] Make it possible to interact with the cells on the board
 - [ ] Have a main menu
 
-### Make a functional web API
+### *Make a functional web API*
 
 As a web interface developer I need an API to get information about the game state from the host.
 
 #### Definition of done
 
-- [ ] Make it possible to get the game state
-- [ ] Make it possible to send click commands to the game
-- [ ] Make it possible to have multiple users connected to the same game
+- [x] Make it possible to get the game state
+- [x] Make it possible to send click commands to the game
+- [x] Make it possible to have multiple users connected to the same game
 
 ### *Implement the game*
 
