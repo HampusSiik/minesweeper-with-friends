@@ -1,7 +1,12 @@
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from typing import Dict, Any, Optional
 from minesweeper_api.api_app import app, games
 from minesweeper.game.minesweeper import Minesweeper
+
+
+@app.route("/", methods=["GET"])
+def home() -> Any:
+    return render_template("index.html")
 
 
 @app.route("/create_game", methods=["POST"])
