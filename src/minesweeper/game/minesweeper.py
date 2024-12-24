@@ -76,6 +76,7 @@ class Minesweeper:
         if self._board.is_flagged(position):
             return
         self._board.reveal(position)
+        self._reveal_nearby_cells(position)
 
     def right_click_cell(self, position: Position) -> None:
         """
@@ -109,3 +110,22 @@ class Minesweeper:
             ShowBoard: Show board.
         """
         return ShowBoard(self._board)
+
+    def _reveal_nearby_cells(self, position: Position) -> None:
+        """
+        Reveal nearby cells.
+
+        Args:
+            position (Position): Position to reveal nearby cells.
+        """
+        if self._board.surrounding_mines(position) <= self._board.surrounding_flags(
+            position
+        ):
+            positions_to_reveal = [
+                neighbor
+                for neighbor in self._board.neighbours(position)
+                if not self._board.is_revealed(neighbor)
+                and not self._board.is_flagged(neighbor)
+            ]
+            for position in positions_to_reveal:
+                self.left_click_cell(position)

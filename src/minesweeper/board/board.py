@@ -86,6 +86,30 @@ class Board:
             [self._board[i][j].is_mine() for i, j in self._bounded_range(position)]
         )
 
+    def surrounding_flags(self, position: Position) -> int:
+        """
+        Number of flags surrounding a position.
+
+        Args:
+            position (Position): Position to check.
+        Returns:
+            int: Number of flags surrounding the position.
+        """
+        return sum(
+            [self._board[i][j].is_flagged() for i, j in self._bounded_range(position)]
+        )
+
+    def neighbours(self, position: Position) -> Generator[Position]:
+        """
+        Neighbours of a position.
+
+        Args:
+            position (Position): Position to get the neighbours of.
+        Returns:
+            Generator[CellContainer]: Neighbours of the position.
+        """
+        return ((i, j) for i, j in self._bounded_range(position) if (i, j) != position)
+
     def _bounded_range(self, position: Position) -> Generator[Position]:
         """
         Range of positions around position that are within the board.
