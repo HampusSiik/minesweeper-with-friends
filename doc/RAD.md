@@ -28,8 +28,8 @@ As a user I want to be able to play the game in my webbrowser.
 
 #### Definition of done
 
-- [ ] Make it possible to show the game board
-- [ ] Make it possible to interact with the cells on the board
+- [x] Make it possible to show the game board
+- [x] Make it possible to interact with the cells on the board
 - [ ] Have a main menu
 
 ### *Make a functional web API*
@@ -58,7 +58,7 @@ As a user I want to be able to host a game so that my friends can join.
 
 #### Definition of done
 
-- [ ] Make it possible to create a game with a unique id
+- [x] Make it possible to create a game with a unique id
 - [ ] Make it possible to set a password for the game
 - [ ] Make it possible to set a username in the game
 
