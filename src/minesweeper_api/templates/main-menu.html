@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Main Menu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Welcome to Minesweeper</h1>
+    <div class="menu">
+        <button id="create-game">Create Game</button>
+        <button id="join-game">Join Game</button>
+    </div>
+
+    <script>
+        document.getElementById("create-game").addEventListener("click", () => {
+            window.location.href = "/game/game_1";
+        });
+
+        document.getElementById("join-game").addEventListener("click", () => {
+            const gameId = prompt("Enter the Game ID to join:");
+            if (gameId) {
+                window.location.href = `/game/${gameId}`;
+            }
+        });
+    </script>
+</body>
+</html>

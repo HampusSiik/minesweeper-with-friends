@@ -6,7 +6,12 @@ from minesweeper.game.minesweeper import Minesweeper
 
 @app.route("/", methods=["GET"])
 def home() -> Any:
-    return render_template("index.html")
+    return render_template("main-menu.html")
+
+
+@app.route("/game/<game_id>", methods=["GET"])
+def game(game_id: str) -> Any:
+    return render_template("game.html")
 
 
 @app.route("/create_game", methods=["POST"])

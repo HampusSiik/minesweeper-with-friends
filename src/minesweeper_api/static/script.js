@@ -21,7 +21,6 @@ const fetchBoard = async () => {
 };
 
 const createGame = async (rows, cols, mines) => {
-    console.log(apiBaseUrl);
     try {
         const response = await fetch(`${apiBaseUrl}/create_game`, {
             method: "POST",
@@ -81,3 +80,7 @@ socket.on("update_board", (data) => {
 });
 
 createGame(10, 10, 10);
+
+document.getElementById("back-to-menu").addEventListener("click", () => {
+    window.location.href = "/";
+});
