@@ -1,4 +1,4 @@
-@startuml model
+@startuml minesweeper
 
 skinparam {
 
