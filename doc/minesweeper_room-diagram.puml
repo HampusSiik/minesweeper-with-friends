@@ -24,9 +24,6 @@ skinparam {
 
 }
 
-!define Optional(T) Optional[T]
-!define Dict(T, U) Dict[T, U]
-
 package minesweeper_room {
 
     class Player {
@@ -41,7 +38,7 @@ package minesweeper_room {
         + leave_room() -> None
         + right_click(position: Position) -> None
         + left_click(position: Position) -> None
-        + to_dict() -> Dict(str, str)
+        + to_dict() -> Dict[str, str]
         + set_leave_callback(callback: Callable[[Player], None]) -> None
         + set_right_click_callback(callback: Callable[[Player, Position], None]) -> None
         + set_left_click_callback(callback: Callable[[Player, Position], None]) -> None
@@ -58,14 +55,14 @@ package minesweeper_room {
         + mines() -> int
         + width() -> int
         + height() -> int
-        + to_dict() -> Dict(str, int)
+        + to_dict() -> Dict[str, int]
 
     }
 
     class Room {
 
-        - _players: List(Player)
-        - _board: Optional(Board)
+        - _players: List[Player]
+        - _board: Optional[Board]
         - _options: GameOptions
         - _room_id: str
 

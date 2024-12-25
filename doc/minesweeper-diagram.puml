@@ -24,11 +24,6 @@ skinparam {
 
 }
 
-!define List(T) List[T]
-!define string str
-!define Optional(T) Optional[T]
-!define Dict(T, U) Dict[T, U]
-
 !definelong CELL_BODY()
     + is_mine() -> bool
     + is_flagged() -> bool
@@ -36,7 +31,7 @@ skinparam {
     + unwraped() -> Cell
     + flagged() -> Cell
     + revealed() -> Cell
-    + __str__() -> string
+    + __str__() -> str
 !enddefinelong
 
 package minesweeper {
@@ -44,7 +39,7 @@ package minesweeper {
     package board {
 
         class Board {
-            - board: List(List(CellContainer))
+            - board: List[List[CellContainer]]
             + generate_board(width: int, height: int) -> None
             + place_mines(mines: int, start_position: Position) -> None
             + show_board() -> str
@@ -55,7 +50,7 @@ package minesweeper {
             + is_revealed(position: Position) -> bool
             + toggle_flag(position: Position) -> None
             + shape() -> Tuple(int, int)
-            + all_positions() -> List(Position)
+            + all_positions() -> List[Position]
             + mines() -> int
         }
 
@@ -132,22 +127,22 @@ package minesweeper {
         }
 
         class ShowBoard {
-            - _board: List(List(ShowCell))
-            + get_board() -> List(List(ShowCell))
+            - _board: List[List[ShowCell]]
+            + get_board() -> List[List[ShowCell]]
             + __init__(board: Board) -> None
-            + show() -> string
+            + show() -> str
         }
 
         class ShowCell {
-            - _adjacent_mines: Optional(int)
-            - _is_mine: Optional(bool)
+            - _adjacent_mines: Optional[int]
+            - _is_mine: Optional[bool]
             - _is_flagged: bool
             - _is_revealed: bool
-            + adjacent_mines() -> Optional(int)
-            + is_mine() -> Optional(bool)
+            + adjacent_mines() -> Optional[int]
+            + is_mine() -> Optional[bool]
             + is_flagged() -> bool
             + is_revealed() -> bool
-            + __str__() -> string
+            + __str__() -> str
         }
 
         MineSweeper --> ShowBoard
