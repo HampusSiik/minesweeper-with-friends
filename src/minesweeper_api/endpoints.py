@@ -9,8 +9,8 @@ def home() -> Any:
     return render_template("main-menu.html")
 
 
-@app.route("/game/<game_id>", methods=["GET"])
-def game(game_id: str) -> Any:
+@app.route("/game", methods=["GET"])
+def game() -> Any:
     return render_template("game.html")
 
 

@@ -15,13 +15,13 @@
 
     <script>
         document.getElementById("create-game").addEventListener("click", () => {
-            window.location.href = "/game/game_1";
+            window.location.href = "/game";
         });
 
         document.getElementById("join-game").addEventListener("click", () => {
             const gameId = prompt("Enter the Game ID to join:");
             if (gameId) {
-                window.location.href = `/game/${gameId}`;
+                window.location.href = `/game`;
             }
         });
     </script>
