@@ -1,0 +1,78 @@
+@startuml minesweeper_room
+
+skinparam {
+
+    DefaultFontColor White
+    DefaultFontName Monospace
+    DefaultFontSize 16
+    DefaultBorderColor White
+    ArrowColor Gray
+
+    BackgroundColor Black
+    BorderColor Gray
+    FontColor White
+
+    class {
+        BackgroundColor Black
+        BorderColor Gray
+    }
+
+    package {
+        BackgroundColor Black
+        BorderColor Gray
+    }
+
+}
+
+!define List(T) List[T]
+!define string str
+!define Optional(T) Optional[T]
+!define Dict(T, U) Dict[T, U]
+
+package minesweeper_room {
+
+    class Player {
+
+        - _name: string
+
+        + __init__(name: str)
+        + name() -> str
+
+    }
+
+    class GameOptions {
+
+        - _mines: int
+        - _width: int
+        - _height: int
+
+        + __init__(mines: int, width: int, height: int)
+        + mines() -> int
+        + width() -> int
+        + height() -> int
+
+    }
+
+    class Room {
+
+        - _players: List(Player)
+        - _board: Optional(Board)
+        - _options: GameOptions
+
+        + __init__(options: GameOptions)
+        + add_player(player: Player) -> None
+        + remove_player(player: Player) -> None
+        + update_options(options: GameOptions) -> None
+        + start_game() -> None
+        + is_won() -> bool
+        + is_lost() -> bool
+        + get_show_board() -> ShowBoard
+
+    }
+
+    Room *-- Player
+    Room *-- GameOptions
+
+}
+
+@enduml
