@@ -11,7 +11,7 @@ if DEBUG:
     PORT = 5000
 else:
     ADDRESS = environ.get("ADDRESS", "0.0.0.0")
-    PORT = int(environ.get("PORT", 5000))
+    PORT = int(environ.get("PORT", 80))
 
 
 def main():
