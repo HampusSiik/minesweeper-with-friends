@@ -22,7 +22,6 @@ def handle_join_game(data: Dict[str, Any]) -> None:
     """
     game_id: str = data["game_id"]
     join_room(game_id)
-    print(f"Player joined {game_id}")
     emit("message", {"msg": f"Player joined {game_id}"}, to=game_id, broadcast=True)
 
 
