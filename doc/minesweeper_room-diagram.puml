@@ -29,7 +29,7 @@ package minesweeper_room {
     class Player {
 
         - _name: str
-        - _leave_callbacks: Callable[[Player], None]
+        - _leave_callback: Callable[[Player], None]
         - _right_click_callback: Callable[[Player, Position], None]
         - _left_click_callback: Callable[[Player, Position], None]
 
@@ -63,7 +63,7 @@ package minesweeper_room {
     class Room {
 
         - _players: List[Player]
-        - _board: Optional[Board]
+        - _game: Optional[Minesweeper]
         - _options: GameOptions
         - _room_id: str
 
