@@ -37,7 +37,7 @@ class Minesweeper:
         """
         return self._board.shape()
 
-    def game_lost(self) -> bool:
+    def is_lost(self) -> bool:
         """
         Check if the game is lost.
 
@@ -49,7 +49,7 @@ class Minesweeper:
             for position in self._board.all_positions()
         )
 
-    def game_won(self) -> bool:
+    def is_won(self) -> bool:
         """
         Check if the game is won.
 
@@ -61,7 +61,7 @@ class Minesweeper:
                 self._board.is_mine(position) or self._board.is_revealed(position)
                 for position in self._board.all_positions()
             )
-            and not self.game_lost()
+            and not self.is_lost()
         )
 
     def left_click_cell(self, position: Position) -> None:
@@ -77,7 +77,7 @@ class Minesweeper:
             return
         self._board.reveal(position)
         self._reveal_nearby_cells(position)
-    
+
     def _reveal_cell(self, position: Position) -> None:
         """
         Reveal a cell.

@@ -67,7 +67,7 @@ package minesweeper_room {
         - _options: GameOptions
         - _room_id: str
 
-        + __init__(options: GameOptions)
+        + __init__(options: GameOptions, room_id: str) -> None
         + add_player(player: Player) -> None
         + remove_player(player: Player) -> None
         + update_options(options: GameOptions) -> None

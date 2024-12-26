@@ -16,18 +16,18 @@ class TestMinesweeper(unittest.TestCase):
 
     def test_game_lost_false(self):
         m = Minesweeper()
-        self.assertFalse(m.game_lost())
+        self.assertFalse(m.is_lost())
 
     def test_game_won_false(self):
         m = Minesweeper()
         m.generate_game(1, 1, 0)
-        self.assertFalse(m.game_won())
+        self.assertFalse(m.is_won())
 
     def test_left_click_cell(self):
         m = Minesweeper()
         m.generate_game(1, 1, 0)
         m.left_click_cell((0, 0))
-        self.assertTrue(m.game_won())
+        self.assertTrue(m.is_won())
 
     def test_right_click_cell(self):
         m = Minesweeper()
@@ -40,7 +40,7 @@ class TestMinesweeper(unittest.TestCase):
         m.generate_game(1, 2, 1)
         m.left_click_cell((0, 0))
         m.left_click_cell((0, 1))
-        self.assertTrue(m.game_lost())
+        self.assertTrue(m.is_lost())
 
     def test_generate_game(self):
         m = Minesweeper()
@@ -48,7 +48,7 @@ class TestMinesweeper(unittest.TestCase):
         m.left_click_cell((0, 0))
         self.assertEqual(m._board.mines(), 10)
         self.assertEqual(m._board.shape(), (10, 10))
-        self.assertFalse(m.game_lost())
+        self.assertFalse(m.is_lost())
         self.assertEqual(m._mines, 10)
         self.assertEqual(m._board.mines(), 10)
         self.assertEqual(m._board.shape(), (10, 10))
@@ -59,7 +59,7 @@ class TestMinesweeper(unittest.TestCase):
         m.left_click_cell((0, 0))
         self.assertEqual(m._board.mines(), 0)
         self.assertEqual(m._board.shape(), (10, 10))
-        self.assertFalse(m.game_lost())
+        self.assertFalse(m.is_lost())
         self.assertEqual(m._mines, 0)
         self.assertEqual(m._board.mines(), 0)
         self.assertEqual(m._board.shape(), (10, 10))

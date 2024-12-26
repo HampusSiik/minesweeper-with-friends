@@ -11,12 +11,12 @@ class GameOptions:
     The number of mines in the game.
     """
 
-    _width: int
+    _cols: int
     """
     The width of the game board.
     """
 
-    _height: int
+    _rows: int
     """
     The height of the game board.
     """
@@ -26,8 +26,8 @@ class GameOptions:
         Initializes a new GameOptions object.
         """
         self._mines = mines
-        self._width = width
-        self._height = height
+        self._cols = width
+        self._rows = height
 
     def mines(self) -> int:
         """
@@ -38,23 +38,23 @@ class GameOptions:
         """
         return self._mines
 
-    def width(self) -> int:
+    def cols(self) -> int:
         """
         Returns the width of the game board.
 
         Returns:
             int: The width of the game board.
         """
-        return self._width
+        return self._cols
 
-    def height(self) -> int:
+    def rows(self) -> int:
         """
         Returns the height of the game board.
 
         Returns:
             int: The height of the game board.
         """
-        return self._height
+        return self._rows
 
     def to_dict(self) -> Dict[str, int]:
         """
@@ -65,6 +65,6 @@ class GameOptions:
         """
         return {
             "mines": self._mines,
-            "width": self._width,
-            "height": self._height,
+            "width": self._cols,
+            "height": self._rows,
         }
