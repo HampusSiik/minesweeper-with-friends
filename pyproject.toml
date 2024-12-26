@@ -18,6 +18,8 @@ classifiers = [
     "Operating System :: OS Independent"
 ]
 dependencies = [
+    "flask-socketio>=5.3.2",
+    "flask>=2.0"
 ]
 
 [tool.setuptools.packages.find]
