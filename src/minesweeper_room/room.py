@@ -27,12 +27,7 @@ class Room:
     The options for the game.
     """
 
-    _room_id: str
-    """
-    The ID of the room.
-    """
-
-    def __init__(self, options: GameOptions, room_id: str) -> None:
+    def __init__(self, options: GameOptions) -> None:
         """
         Initializes a new room with the given options.
 
@@ -43,7 +38,6 @@ class Room:
         self._players = []
         self._game = Minesweeper()
         self._options = options
-        self._room_id = room_id
 
     def add_player(self, player: Player) -> None:
         """

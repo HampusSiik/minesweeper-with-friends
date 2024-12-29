@@ -56,13 +56,22 @@ class Minesweeper:
         Returns:
             bool: True if the game is won, False otherwise.
         """
-        return (
+        return self.mines_generated() and (
             all(
                 self._board.is_mine(position) or self._board.is_revealed(position)
                 for position in self._board.all_positions()
             )
             and not self.is_lost()
         )
+
+    def mines_generated(self) -> bool:
+        """
+        Check if mines are generated.
+
+        Returns:
+            bool: True if mines are generated, False otherwise.
+        """
+        return self._board.mines() == self._mines
 
     def left_click_cell(self, position: Position) -> None:
         """
@@ -71,7 +80,7 @@ class Minesweeper:
         Args:
             position (Position): Position to left click.
         """
-        if self._board.mines() != self._mines:
+        if not self.mines_generated():
             self._board.place_mines(self._mines, position)
         if self._board.is_flagged(position):
             return
