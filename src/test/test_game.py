@@ -79,8 +79,25 @@ class TestMinesweeper(unittest.TestCase):
         m.right_click_cell((0, 0))
         self.assertFalse(m._board.is_flagged((0, 0)))
 
+    def test_mines_generated(self):
+        m = Minesweeper()
+        m.generate_game(10, 10, 10)
+        m.left_click_cell((0, 0))
+        self.assertTrue(m.mines_generated())
+
+    def test_mines_not_generated(self):
+        m = Minesweeper()
+        m.generate_game(10, 10, 10)
+        self.assertFalse(m.mines_generated())
+
     def test_right_click_cell_no_mines_generated(self):
         m = Minesweeper()
         m.generate_game(10, 10, 10)
         m.right_click_cell((0, 0))
         self.assertFalse(m._board.is_flagged((0, 0)))
+
+    def test_left_click_cell_no_mines_generated(self):
+        m = Minesweeper()
+        m.generate_game(10, 10, 10)
+        m.left_click_cell((0, 0))
+        self.assertTrue(m.mines_generated())
