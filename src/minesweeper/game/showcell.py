@@ -1,6 +1,9 @@
 from typing import Optional, Dict
 
 
+CellDict = Dict[str, Optional[bool | int]]
+
+
 class ShowCell:
     """
     Cell with revealed information.
@@ -100,12 +103,12 @@ class ShowCell:
             return "F"
         return "#"
 
-    def to_dict(self) -> Dict[str, Optional[bool | int]]:
+    def to_dict(self) -> CellDict:
         """
         Convert the cell to a dictionary.
 
         Returns:
-            dict: Dictionary representation of the cell.
+            CellDict: Dictionary representation of the cell.
         """
         return {
             "adjacent_mines": self._adjacent_mines,

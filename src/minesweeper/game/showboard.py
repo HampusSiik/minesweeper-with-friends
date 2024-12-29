@@ -1,7 +1,7 @@
 from typing import List, Dict, Optional
 
 from minesweeper.board.board import Board
-from minesweeper.game.showcell import ShowCell
+from minesweeper.game.showcell import ShowCell, CellDict
 from minesweeper.position import Position
 
 
@@ -60,11 +60,11 @@ class ShowBoard:
         """
         return "\n".join(" ".join(str(cell) for cell in row) for row in self._board)
 
-    def to_dict(self) -> List[List[Dict[str, Optional[bool | int]]]]:
+    def to_dict(self) -> List[List[CellDict]]:
         """
         Converts the ShowBoard object to a dictionary that can be serialized into JSON.
 
         Returns:
-            Dict[str, Any]: The dictionary representation of the ShowBoard object.
+            List[List[CellDict]]: The dictionary representation of the ShowBoard object.
         """
         return [[cell.to_dict() for cell in row] for row in self._board]
