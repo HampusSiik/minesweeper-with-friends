@@ -83,7 +83,10 @@ class Board:
             int: Number of mines surrounding the position.
         """
         return sum(
-            [self._board[i][j].is_mine() for i, j in self._bounded_range(position)]
+            [
+                self._board[i][j].is_mine()
+                for i, j in self._neighbouring_positions(position)
+            ]
         )
 
     def surrounding_flags(self, position: Position) -> int:
@@ -96,7 +99,10 @@ class Board:
             int: Number of flags surrounding the position.
         """
         return sum(
-            [self._board[i][j].is_flagged() for i, j in self._bounded_range(position)]
+            [
+                self._board[i][j].is_flagged()
+                for i, j in self._neighbouring_positions(position)
+            ]
         )
 
     def neighbours(self, position: Position) -> Generator[Position]:
@@ -108,9 +114,13 @@ class Board:
         Returns:
             Generator[CellContainer]: Neighbours of the position.
         """
-        return ((i, j) for i, j in self._bounded_range(position) if (i, j) != position)
+        return (
+            (i, j)
+            for i, j in self._neighbouring_positions(position)
+            if (i, j) != position
+        )
 
-    def _bounded_range(self, position: Position) -> Generator[Position]:
+    def _neighbouring_positions(self, position: Position) -> Generator[Position]:
         """
         Range of positions around position that are within the board.
 

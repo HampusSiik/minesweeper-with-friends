@@ -65,6 +65,6 @@ class GameOptions:
         """
         return {
             "mines": self._mines,
-            "width": self._cols,
-            "height": self._rows,
+            "cols": self._cols,
+            "rows": self._rows,
         }

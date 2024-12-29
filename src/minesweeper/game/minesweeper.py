@@ -102,15 +102,15 @@ class Minesweeper:
             return
         self._board.toggle_flag(position)
 
-    def generate_game(self, rows: int, columns: int, mines: int) -> None:
+    def generate_game(self, rows: int, cols: int, mines: int) -> None:
         """
         Generate a board.
 
         Args:
             rows (int): Number of rows.
-            columns (int): Number of columns.
+            cols (int): Number of columns.
         """
-        self._board.generate_board(rows, columns)
+        self._board.generate_board(rows, cols)
         self._mines = mines
 
     def get_show_board(self) -> ShowBoard:
