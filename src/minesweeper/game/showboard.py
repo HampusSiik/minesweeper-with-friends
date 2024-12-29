@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List
 
 from minesweeper.board.board import Board
 from minesweeper.game.showcell import ShowCell, CellDict
