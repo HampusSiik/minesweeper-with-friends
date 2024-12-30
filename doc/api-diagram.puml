@@ -1,35 +1,35 @@
 @startuml api
 
-skinparam {
+title API Sequence Diagram
 
-    DefaultFontColor White
-    DefaultFontName Monospace
-    DefaultFontSize 16
-    DefaultBorderColor White
-    ArrowColor Gray
+actor Player1 as P1
+actor Player2 as P2
+entity API as A
+database Rooms as R
 
-    BackgroundColor Black
-    BorderColor Gray
-    FontColor White
-
-    class {
-        BackgroundColor Black
-        BorderColor Gray
-    }
-
-    package {
-        BackgroundColor Black
-        BorderColor Gray
-    }
-
-}
-
-package minesweeper_api {
-
-    class API {
-
-    }
-
-}
+P1 -> A: /create_room
+A -> R: create_room
+R --> A: room_id
+A --> P1: response: room_id
+P1 -> A: emit("join_game", { game_id: gameId })
+A -> R: join(room_id)
+P2 -> A: emit("join_game", { game_id: gameId })
+A -> R: join(room_id)
+P1 -> A: emit: start_game
+A -> R: start game(room_id)
+R --> A: ShowBoard
+A --> P1: ShowBoard
+A --> P2: ShowBoard
+loop until game over
+    alt Player1 moves
+        P1 -> A: move(room_id, move)
+    else Player2 moves
+        P2 -> A: move(room_id, move)
+    end
+    A -> R: move(room_id, move)
+    R --> A: ShowBoard
+    A --> P1: ShowBoard
+    A --> P2: ShowBoard
+end
 
 @enduml
