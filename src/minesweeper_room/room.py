@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 
 from minesweeper.game.minesweeper import Minesweeper
 from minesweeper.game.showboard import ShowBoard
