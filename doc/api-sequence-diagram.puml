@@ -1,35 +1,44 @@
-@startuml api
+@startuml api-sequence
 
-title API Sequence Diagram
+title Room API Sequence Diagram
 
-actor Player1 as P1
-actor Player2 as P2
-entity API as A
-database Rooms as R
+actor User
+participant "RoomAPI" as API
+participant "Rooms" as Room
+participant "GameStateUpdate" as Update
 
-P1 -> A: /create_room
-A -> R: create_room
-R --> A: room_id
-A --> P1: response: room_id
-P1 -> A: emit("join_game", { game_id: gameId })
-A -> R: join(room_id)
-P2 -> A: emit("join_game", { game_id: gameId })
-A -> R: join(room_id)
-P1 -> A: emit: start_game
-A -> R: start game(room_id)
-R --> A: ShowBoard
-A --> P1: ShowBoard
-A --> P2: ShowBoard
-loop until game over
-    alt Player1 moves
-        P1 -> A: move(room_id, move)
-    else Player2 moves
-        P2 -> A: move(room_id, move)
-    end
-    A -> R: move(room_id, move)
-    R --> A: ShowBoard
-    A --> P1: ShowBoard
-    A --> P2: ShowBoard
-end
+== Creating a Room ==
+User -> API: create_room(options)
+API -> Room: new_room(options, room_id)
+Room --> API: room_id
+API --> User: room_id
+
+== Joining a Room ==
+User -> API: join_room(room_id, player)
+API -> Room: add_player(player)
+Room -> Update: notify_state_change(room_id, state)
+Update --> User: state
+
+== Leaving a Room ==
+User -> API: leave_room(room_id, player)
+API -> Room: remove_player(player)
+Room -> Update: notify_state_change(room_id, state)
+Update --> User: state
+
+== Updating Room Options ==
+User -> API: update_room_options(room_id, options)
+API -> Room: update_options(options)
+Room -> Update: notify_state_change(room_id, state)
+Update --> User: state
+
+== Getting Room State ==
+User -> API: get_room_state(room_id)
+API -> Room: get_room_state(room_id)
+Room --> API: state
+API --> User: state
+
+== Game State Updates ==
+Room -> Update: notify_state_change(room_id, state)
+Update --> User: state
 
 @enduml
