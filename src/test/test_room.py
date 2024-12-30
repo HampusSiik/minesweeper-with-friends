@@ -58,3 +58,10 @@ class TestRoom(unittest.TestCase):
         self._room.start_game()
         show_board = self._room.get_show_board()
         self.assertIsInstance(show_board, ShowBoard, "ShowBoard not returned correctly")
+
+    def test_get_game_options(self):
+        self.assertEqual(
+            self._room.get_game_options(),
+            self._game_options,
+            "Game options not returned correctly",
+        )

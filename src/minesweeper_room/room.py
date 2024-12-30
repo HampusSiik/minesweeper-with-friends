@@ -103,3 +103,12 @@ class Room:
             ShowBoard: The board to show to the players.
         """
         return self._game.get_show_board()
+
+    def get_game_options(self) -> GameOptions:
+        """
+        Get the game options.
+
+        Returns:
+            GameOptions: The game options.
+        """
+        return self._options

@@ -75,6 +75,7 @@ package minesweeper_room {
         + is_won() -> bool
         + is_lost() -> bool
         + get_show_board() -> ShowBoard
+        + get_game_options() -> GameOptions
 
     }
 
