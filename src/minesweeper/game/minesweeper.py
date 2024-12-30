@@ -118,6 +118,7 @@ class Minesweeper:
         Args:
             rows (int): Number of rows.
             cols (int): Number of columns.
+            mines (int): Number of mines.
         """
         self._board.generate_board(rows, cols)
         self._mines = mines
