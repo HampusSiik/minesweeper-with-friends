@@ -30,5 +30,5 @@ games: Dict[str, Minesweeper] = {}
 The `games` dictionary stores the active Minesweeper games.
 """
 
-from minesweeper_api.endpoints import *
-from minesweeper_api.socketio_events import *
+from .endpoints import *
+from .socketio_events import *

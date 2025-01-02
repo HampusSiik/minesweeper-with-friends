@@ -1,6 +1,6 @@
 from flask_socketio import join_room, emit
 from typing import Dict, Any, Optional
-from minesweeper_api.api_app import socketio, games
+from .api_app import socketio, games
 from minesweeper.position import Position, from_dict
 from minesweeper.game.minesweeper import Minesweeper
 

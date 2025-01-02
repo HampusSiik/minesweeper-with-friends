@@ -1,6 +1,6 @@
 from flask import request, jsonify, render_template
 from typing import Dict, Any, Optional
-from minesweeper_api.api_app import app, games
+from .api_app import app, games
 from minesweeper.game.minesweeper import Minesweeper
 
 
