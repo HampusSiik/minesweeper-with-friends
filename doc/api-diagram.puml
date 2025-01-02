@@ -32,6 +32,6 @@ class "RoomRegistry" as Room {
 
 RoomAPI ..> Room : "uses"
 Room ..> RoomState : "provides"
-RoomState ..> GameStateUpdate : "notifies"
+Room ..> GameStateUpdate : "notifies"
 
 @enduml
