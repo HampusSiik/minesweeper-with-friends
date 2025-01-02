@@ -1,7 +1,35 @@
 @startuml api
 
-class GameStateUpdate {
-    + notify_state_change(room_id: str, state: RoomState) -> None
+skinparam {
+
+    DefaultFontColor White
+    DefaultFontName Monospace
+    DefaultFontSize 16
+    DefaultBorderColor White
+    ArrowColor Gray
+
+    BackgroundColor Black
+    BorderColor Gray
+    FontColor White
+
+    class {
+        BackgroundColor Black
+        BorderColor Gray
+    }
+
+    package {
+        BackgroundColor Black
+        BorderColor Gray
+    }
+
+}
+
+class GameStateUpdater {
+    - _room_update_listeners: List[RoomUpdateListener]
+    - _any_update_listeners: List[AnyUpdateListener]
+    + notify_state_update(room_id: str, state: RoomState) -> None
+    + add_room_update_listener(listener: RoomUpdateListener) -> None
+    + add_any_update_listener(listener: AnyUpdateListener) -> None
 }
 
 class RoomState {
@@ -10,6 +38,7 @@ class RoomState {
     - board: ShowBoard
     - is_won: bool
     - is_lost: bool
+    + __init__(players: List[Player],\noptions: GameOptions,\nboard: ShowBoard,\nis_won: bool,\nis_lost: bool) -> None
     + to_dict() -> Dict[str, Any]
 }
 
@@ -32,6 +61,6 @@ class "RoomRegistry" as Room {
 
 RoomAPI ..> Room : "uses"
 Room ..> RoomState : "provides"
-Room ..> GameStateUpdate : "notifies"
+Room ..> GameStateUpdater : "notifies"
 
 @enduml
