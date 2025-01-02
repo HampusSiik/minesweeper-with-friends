@@ -4,7 +4,7 @@ title Room API Sequence Diagram
 
 actor User
 participant "RoomAPI" as API
-participant "Rooms" as Room
+participant "RoomRegistry" as Room
 participant "GameStateUpdate" as Update
 
 == Creating a Room ==
