@@ -24,43 +24,4 @@ skinparam {
 
 }
 
-class GameStateUpdater {
-    - _room_update_listeners: List[RoomUpdateListener]
-    - _any_update_listeners: List[AnyUpdateListener]
-    + notify_state_update(room_id: str, state: RoomState) -> None
-    + add_room_update_listener(listener: RoomUpdateListener) -> None
-    + add_any_update_listener(listener: AnyUpdateListener) -> None
-}
-
-class RoomState {
-    - players: List[Player]
-    - options: GameOptions
-    - board: ShowBoard
-    - is_won: bool
-    - is_lost: bool
-    + __init__(players: List[Player],\noptions: GameOptions,\nboard: ShowBoard,\nis_won: bool,\nis_lost: bool) -> None
-    + to_dict() -> Dict[str, Any]
-}
-
-class RoomAPI {
-    + create_room(options: GameOptions) -> str
-    + join_room(room_id: str, player: Player) -> None
-    + leave_room(room_id: str, player: Player) -> None
-    + update_room_options(room_id: str, options: GameOptions) -> None
-    + get_room_state(room_id: str) -> RoomState
-}
-
-class "RoomRegistry" as Room {
-    + new_room(options: GameOptions, room_id: str) -> None
-    + add_player(player: Player) -> None
-    + remove_player(player: Player) -> None
-    + update_options(options: GameOptions) -> None
-    + start_game() -> None
-    + get_room_state(room_id: str) -> RoomState
-}
-
-RoomAPI ..> Room : "uses"
-Room ..> RoomState : "provides"
-Room ..> GameStateUpdater : "notifies"
-
 @enduml

@@ -112,3 +112,12 @@ class Room:
             GameOptions: The game options.
         """
         return self._options
+
+    def get_players(self) -> List[Player]:
+        """
+        Get the players in the room.
+
+        Returns:
+            List[Player]: The players in the room.
+        """
+        return self._players
