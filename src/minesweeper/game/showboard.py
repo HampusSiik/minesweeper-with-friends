@@ -1,7 +1,7 @@
 from typing import List
 
 from minesweeper.board.board import Board
-from minesweeper.game.showcell import ShowCell, CellDict
+from .showcell import ShowCell, CellDict
 from minesweeper.position import Position
 
 

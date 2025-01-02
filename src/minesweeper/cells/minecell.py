@@ -1,4 +1,4 @@
-from minesweeper.cells.basecell import BaseCell
+from .basecell import BaseCell
 
 
 class MineCell(BaseCell):

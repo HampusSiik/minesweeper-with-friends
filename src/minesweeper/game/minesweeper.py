@@ -1,7 +1,7 @@
 from typing import Tuple
 from minesweeper.position import Position
 from minesweeper.board.board import Board
-from minesweeper.game.showboard import ShowBoard
+from .showboard import ShowBoard
 
 
 class Minesweeper:

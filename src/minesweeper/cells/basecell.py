@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
-from minesweeper.cells.cell import Cell
-from minesweeper.cells.revealedcell import RevealedCell
-from minesweeper.cells.flaggedcell import FlaggedCell
+
+from .cell import Cell
+from .revealedcell import RevealedCell
+from .flaggedcell import FlaggedCell
 
 
 class BaseCell(ABC):

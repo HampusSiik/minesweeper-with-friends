@@ -1,7 +1,8 @@
 from __future__ import annotations
-from minesweeper.cells.cell import Cell
-from minesweeper.cells.minecell import MineCell
-from minesweeper.cells.emptycell import EmptyCell
+
+from .cell import Cell
+from .minecell import MineCell
+from .emptycell import EmptyCell
 
 
 class CellContainer:

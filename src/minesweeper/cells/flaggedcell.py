@@ -1,5 +1,5 @@
-from minesweeper.cells.cell import Cell
-from minesweeper.cells.cellwraper import CellWrapper
+from .cell import Cell
+from .cellwraper import CellWrapper
 
 
 class FlaggedCell(CellWrapper):

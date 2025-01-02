@@ -1,5 +1,6 @@
-from minesweeper.cells.basecell import Cell
 from abc import ABC, abstractmethod
+
+from .basecell import Cell
 
 
 class CellWrapper(ABC):
