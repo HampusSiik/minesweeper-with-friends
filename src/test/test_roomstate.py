@@ -1,8 +1,7 @@
 import unittest
 from minesweeper_room.player import Player
 from minesweeper_room.gameoptions import GameOptions
-from minesweeper.game.showboard import ShowBoard
-from minesweeper_api.roomstate import RoomState
+from minesweeper_room.roomstate import RoomState
 from minesweeper.game.minesweeper import Minesweeper
 
 
