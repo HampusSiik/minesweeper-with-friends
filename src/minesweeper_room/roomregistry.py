@@ -1,10 +1,10 @@
 from typing import Dict
 
-from minesweeper_room.gameoptions import GameOptions
-from minesweeper_room.player import Player
-from minesweeper_room.gamestateupdater import GameStateUpdater
-from minesweeper_room.room import Room
-from minesweeper_room.roomstate import RoomState
+from .gameoptions import GameOptions
+from .player import Player
+from .gamestateupdater import GameStateUpdater
+from .room import Room
+from .roomstate import RoomState
 
 
 class RoomRegistry:

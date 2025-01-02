@@ -1,6 +1,6 @@
 from typing import List, Callable, Dict
 
-from minesweeper_room.roomstate import RoomState
+from .roomstate import RoomState
 
 
 RoomUpdateListener = Callable[[RoomState], None]
