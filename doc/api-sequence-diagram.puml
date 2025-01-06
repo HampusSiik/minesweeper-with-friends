@@ -6,7 +6,7 @@ actor User
 participant "API" as API
 participant "RoomAPI" as RoomAPI
 participant "RoomRegistry" as Room
-participant "GameStateUpdate" as Update
+participant "socketio" as Update
 
 == Login as player ==
 
@@ -24,6 +24,20 @@ API --> User: room_id
 User -> API: join_room(room_id, player)
 API -> RoomAPI: join_room(room_id, player)
 RoomAPI -> Room: add_player(room_id, player)
+Room -> Update: notify_state_change(room_id, state)
+Update --> User: state
+
+== Left Clicking ==
+User -> API: left_click(room_id, position)
+API -> RoomAPI: left_click(room_id, position)
+RoomAPI -> Room: left_click(room_id, position)
+Room -> Update: notify_state_change(room_id, state)
+Update --> User: state
+
+== Right Clicking ==
+User -> API: right_click(room_id, position)
+API -> RoomAPI: right_click(room_id, position)
+RoomAPI -> Room: right_click(room_id, position)
 Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
 
