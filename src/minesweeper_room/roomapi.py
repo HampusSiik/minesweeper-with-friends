@@ -65,4 +65,7 @@ class RoomAPI:
         self._room_registry.update_options(room_id, options)
 
     def get_room_state(self, room_id: str) -> RoomState:
+        """
+        Gets the state of the room.
+        """
         return self._room_registry.get_room_state(room_id)
