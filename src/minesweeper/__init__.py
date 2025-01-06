@@ -14,4 +14,5 @@ Subpackages:
     cells: The cell module.
 
     game: The game module.
+
 """
