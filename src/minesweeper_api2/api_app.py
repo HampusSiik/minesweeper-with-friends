@@ -16,19 +16,19 @@ else:
 
 app = Flask(__name__)
 """
-The `app` object is the Flask application that will handle HTTP requests.
+The `app` object is the Flask application that handles HTTP requests.
 """
 
 app.config["SECRET_KEY"] = SECRET_KEY
 
 socketio = SocketIO(app, cors_allowed_origins=CORS_ALLOWED_ORIGINS)
 """
-The `socketio` object is the Flask-SocketIO extension that will handle WebSocket connections.
+The `socketio` object is the Flask-SocketIO extension that handles WebSocket connections.
 """
 
 room_api = RoomAPI()
 """
-The `room_api` object is the RoomAPI object that will handle the room creation and management.
+The `room_api` object is the RoomAPI object that handles the room creation and management.
 """
 
 from .endpoints import *
