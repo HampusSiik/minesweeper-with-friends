@@ -3,38 +3,51 @@
 title Room API Sequence Diagram
 
 actor User
-participant "RoomAPI" as API
+participant "API" as API
+participant "RoomAPI" as RoomAPI
 participant "RoomRegistry" as Room
 participant "GameStateUpdate" as Update
 
+== Login as player ==
+
+User -> API: login(player)
+activate User
+
 == Creating a Room ==
 User -> API: create_room(options)
-API -> Room: new_room(options, room_id)
-Room --> API: room_id
+API -> RoomAPI: new_room(options)
+RoomAPI -> Room: new_room(options, room_id)
+Room --> RoomAPI: room_id
+RoomAPI --> API: room_id
 API --> User: room_id
 
 == Joining a Room ==
 User -> API: join_room(room_id, player)
-API -> Room: add_player(player)
+API -> RoomAPI: join_room(room_id, player)
+RoomAPI -> Room: add_player(room_id, player)
 Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
 
 == Leaving a Room ==
 User -> API: leave_room(room_id, player)
-API -> Room: remove_player(player)
+API -> RoomAPI: leave_room(room_id, player)
+RoomAPI -> Room: remove_player(room_id, player)
 Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
 
 == Updating Room Options ==
 User -> API: update_room_options(room_id, options)
-API -> Room: update_options(options)
+API -> RoomAPI: update_options(room_id, options)
+RoomAPI -> Room: update_options(room_id, options)
 Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
 
 == Getting Room State ==
 User -> API: get_room_state(room_id)
-API -> Room: get_room_state(room_id)
-Room --> API: state
+API -> RoomAPI: get_room_state(room_id)
+RoomAPI -> Room: get_room_state(room_id)
+Room --> RoomAPI: state
+RoomAPI --> API: state
 API --> User: state
 
 == Game State Updates ==
