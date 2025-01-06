@@ -65,11 +65,6 @@ package minesweeper_room {
         + get_room_state(room_id: str) -> RoomState
     }
 
-    RoomAPI -> RoomRegistry
-    RoomRegistry --> RoomState
-    RoomRegistry --> GameStateUpdater
-
-
     class Player {
 
         - _name: str
@@ -124,7 +119,11 @@ package minesweeper_room {
 
     }
 
-    Room *-- Player
+    RoomAPI -> RoomRegistry
+    RoomRegistry --> RoomState
+    RoomRegistry --> GameStateUpdater
+
+    Room o-- Player
     Room *-- GameOptions
 
     RoomRegistry o-- Room
