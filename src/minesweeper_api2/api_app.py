@@ -1,5 +1,5 @@
 # Flask app setup
-from flask import Flask
+from flask import Flask, session
 from flask_socketio import SocketIO
 from os import environ
 
