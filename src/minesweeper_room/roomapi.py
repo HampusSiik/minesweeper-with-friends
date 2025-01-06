@@ -17,7 +17,7 @@ class RoomAPI:
     The registry of rooms.
     """
 
-    _update_observers: List[Callable[[RoomState], None]]
+    _update_observers: List[Callable[[str], None]]
     """
     The list of observers to notify when a room is updated.
     """
@@ -35,11 +35,10 @@ class RoomAPI:
         Args:
             room_id (str): The ID of the room.
         """
-        room_state = self._room_registry.get_room_state(room_id)
         for observer in self._update_observers:
-            observer(room_state)
+            observer(room_id)
 
-    def add_update_observer(self, observer: Callable[[RoomState], None]) -> None:
+    def add_update_observer(self, observer: Callable[[str], None]) -> None:
         """
         Adds an observer to the list of observers.
 
