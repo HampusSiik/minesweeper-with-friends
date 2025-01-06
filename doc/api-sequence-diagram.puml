@@ -17,7 +17,6 @@ activate User
 User -> API: create_room(options)
 API -> RoomAPI: create_room(options)
 RoomAPI -> Room: new_room(options, room_id)
-Room --> RoomAPI: room_id
 RoomAPI --> API: room_id
 API --> User: room_id
 
