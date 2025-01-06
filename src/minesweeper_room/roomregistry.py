@@ -85,3 +85,15 @@ class RoomRegistry:
             room.is_won(),
             room.is_lost(),
         )
+
+    def id_exists(self, room_id: str) -> bool:
+        """
+        Checks if a room with the given ID exists.
+
+        Args:
+            room_id (str): The ID of the room.
+
+        Returns:
+            bool: True if the room exists, False otherwise.
+        """
+        return room_id in self._rooms

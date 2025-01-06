@@ -63,6 +63,7 @@ package minesweeper_room {
         + update_options(room_id: str, options: GameOptions) -> None
         + start_game(room_id: str) -> None
         + get_room_state(room_id: str) -> RoomState
+        + id_exists(room_id: str) -> bool
     }
 
     class Player {
