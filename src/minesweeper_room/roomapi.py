@@ -4,7 +4,6 @@ from .gameoptions import GameOptions
 from .roomregistry import RoomRegistry
 from .roomstate import RoomState
 from .player import Player
-from .gamestateupdater import GameStateUpdater
 
 
 class RoomAPI:
@@ -17,17 +16,11 @@ class RoomAPI:
     The registry of rooms.
     """
 
-    _gamestate_updater: GameStateUpdater
-    """
-    The game state updater.
-    """
-
     def __init__(self) -> None:
         """
         Initializes a new RoomAPI object.
         """
-        self._gamestate_updater = GameStateUpdater()
-        self._room_registry = RoomRegistry(self._gamestate_updater)
+        self._room_registry = RoomRegistry()
 
     def create_room(self, options: GameOptions) -> str:
         """

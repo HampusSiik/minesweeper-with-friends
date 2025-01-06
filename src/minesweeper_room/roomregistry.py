@@ -2,7 +2,6 @@ from typing import Dict
 
 from .gameoptions import GameOptions
 from .player import Player
-from .gamestateupdater import GameStateUpdater
 from .room import Room
 from .roomstate import RoomState
 
@@ -17,14 +16,8 @@ class RoomRegistry:
     The rooms that are currently registered.
     """
 
-    _updater: GameStateUpdater
-    """
-    The updater to notify when rooms are updated.
-    """
-
-    def __init__(self, updater: GameStateUpdater):
+    def __init__(self):
         self._rooms = {}
-        self._updater = updater
 
     def new_room(self, options: GameOptions, room_id: str) -> None:
         """
@@ -65,7 +58,6 @@ class RoomRegistry:
             options (GameOptions): The new options for the room.
         """
         self._rooms[room_id].update_options(options)
-        self._updater.notify_state_update(room_id, self.get_room_state(room_id))
 
     def get_room_state(self, room_id: str) -> RoomState:
         """

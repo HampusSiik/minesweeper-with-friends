@@ -26,15 +26,6 @@ skinparam {
 
 package minesweeper_room {
 
-
-    class GameStateUpdater {
-        - _room_update_listeners: List[RoomUpdateListener]
-        - _any_update_listeners: List[AnyUpdateListener]
-        + notify_state_update(room_id: str, state: RoomState) -> None
-        + add_room_update_listener(listener: RoomUpdateListener) -> None
-        + add_any_update_listener(listener: AnyUpdateListener) -> None
-    }
-
     class RoomState {
         - players: List[Player]
         - options: GameOptions
@@ -46,6 +37,8 @@ package minesweeper_room {
     }
 
     class RoomAPI {
+        - _room_registry: RoomRegistry
+
         + create_room(options: GameOptions) -> str
         + join_room(room_id: str, player: Player) -> None
         + leave_room(room_id: str, player: Player) -> None
@@ -54,7 +47,6 @@ package minesweeper_room {
     }
 
     class RoomRegistry {
-        - _updater: GameStateUpdater
         - _rooms: Dict[str, RoomState]
         + __init__(updater: GameStateUpdater) -> None
         + new_room(options: GameOptions, room_id: str) -> None
@@ -123,7 +115,6 @@ package minesweeper_room {
 
     RoomAPI -> RoomRegistry
     RoomRegistry --> RoomState
-    RoomRegistry --> GameStateUpdater
 
     Room o-- Player
     Room *-- GameOptions
