@@ -18,6 +18,9 @@ class RoomAPI:
     """
 
     _gamestate_updater: GameStateUpdater
+    """
+    The game state updater.
+    """
 
     def __init__(self) -> None:
         """
