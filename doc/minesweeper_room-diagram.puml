@@ -38,12 +38,14 @@ package minesweeper_room {
 
     class RoomAPI {
         - _room_registry: RoomRegistry
+        - _update_observers: List[Callable[[RoomState], None]]
 
         + create_room(options: GameOptions) -> str
         + join_room(room_id: str, player: Player) -> None
         + leave_room(room_id: str, player: Player) -> None
         + update_room_options(room_id: str, options: GameOptions) -> None
         + get_room_state(room_id: str) -> RoomState
+        + add_update_observer(observer: Callable[[RoomState], None]) -> None
     }
 
     class RoomRegistry {
