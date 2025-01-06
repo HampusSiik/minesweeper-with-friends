@@ -1,5 +1,6 @@
 from typing import List
 
+from minesweeper.position import Position
 from minesweeper.game.minesweeper import Minesweeper
 from minesweeper.game.showboard import ShowBoard
 
@@ -46,7 +47,30 @@ class Room:
         Args:
             player (Player): The player to add.
         """
+        player.set_leave_callback(self.remove_player)
+        player.set_left_click_callback(self._left_click)
+        player.set_right_click_callback(self._right_click)
         self._players.append(player)
+
+    def _left_click(self, player: Player, position: Position) -> None:
+        """
+        Handle a left click on the board.
+
+        Args:
+            player (Player): The player who clicked.
+            position (Position): The position clicked.
+        """
+        self._game.left_click_cell(position)
+
+    def _right_click(self, player: Player, position: Position) -> None:
+        """
+        Handle a right click on the board.
+
+        Args:
+            player (Player): The player who clicked.
+            position (Position): The position clicked.
+        """
+        self._game.right_click_cell(position)
 
     def remove_player(self, player: Player) -> None:
         """
@@ -55,6 +79,7 @@ class Room:
         Args:
             player (Player): The player to remove.
         """
+        player.reset_callbacks()
         self._players.remove(player)
 
     def update_options(self, options: GameOptions) -> None:

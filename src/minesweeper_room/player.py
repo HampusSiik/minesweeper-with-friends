@@ -129,3 +129,11 @@ class Player:
             callback (Callable[[Player, Position], None]): The callback function.
         """
         self._left_click_callback = callback
+
+    def reset_callbacks(self) -> None:
+        """
+        Resets the callbacks to the standard callback function.
+        """
+        self._leave_callback = self._right_click_callback = (
+            self._left_click_callback
+        ) = Player.standard_callback
