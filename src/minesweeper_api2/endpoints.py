@@ -1,6 +1,7 @@
 from typing import Dict, Optional, Any
 from flask import request, redirect
 
+from minesweeper.position import from_dict
 from minesweeper_room.roomapi import GameOptions, Player
 from .api_app import app, session, room_api
 
@@ -118,4 +119,56 @@ def leave_room(room_id: str) -> Any:
     if player is not None:
         room_api.leave_room(room_id, player)
 
+    return redirect("/")
+
+
+@app.route("/left_click", methods=["POST"])
+def left_click() -> Any:
+    """
+    Handle the left click event.
+    """
+
+    player: Optional[Player] = session.get("player")
+    if not player:
+        return _no_player()
+
+    request_data: Optional[Dict[str, int]] = request.json
+    if not request_data:
+        return {"error": "No data provided."}, 400
+
+    position = from_dict(request_data)
+
+    player.left_click(position)
+
+    return "", 204
+
+
+@app.route("/right_click", methods=["POST"])
+def right_click() -> Any:
+    """
+    Handle the right click event.
+    """
+
+    player: Optional[Player] = session.get("player")
+    if not player:
+        return _no_player()
+
+    request_data: Optional[Dict[str, int]] = request.json
+    if not request_data:
+        return {"error": "No data provided."}, 400
+
+    position = from_dict(request_data)
+
+    player.right_click(position)
+
+    return "", 204
+
+
+@app.route("/logout", methods=["POST"])
+def logout() -> Any:
+    """
+    Logout the player.
+    """
+
+    session.pop("player", None)
     return redirect("/")

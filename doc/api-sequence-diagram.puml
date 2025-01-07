@@ -28,18 +28,10 @@ Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
 
 == Left Clicking ==
-User -> API: left_click(room_id, position)
-API -> RoomAPI: left_click(room_id, position)
-RoomAPI -> Room: left_click(room_id, position)
-Room -> Update: notify_state_change(room_id, state)
-Update --> User: state
+User -> API: left_click(position)
 
 == Right Clicking ==
-User -> API: right_click(room_id, position)
-API -> RoomAPI: right_click(room_id, position)
-RoomAPI -> Room: right_click(room_id, position)
-Room -> Update: notify_state_change(room_id, state)
-Update --> User: state
+User -> API: right_click(position)
 
 == Leaving a Room ==
 User -> API: leave_room(room_id, player)
@@ -55,16 +47,12 @@ RoomAPI -> Room: update_options(room_id, options)
 Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
 
-== Getting Room State ==
-User -> API: get_room_state(room_id)
-API -> RoomAPI: get_room_state(room_id)
-RoomAPI -> Room: get_room_state(room_id)
-Room --> RoomAPI: state
-RoomAPI --> API: state
-API --> User: state
-
 == Game State Updates ==
 Room -> Update: notify_state_change(room_id, state)
 Update --> User: state
+
+== Log Out ==
+User -> API: logout()
+deactivate User
 
 @enduml
