@@ -12,6 +12,11 @@ def handle_join_room(data: Dict[str, str]) -> None:
     room_id: str = data["room_id"]
     join_room(room_id)
     emit("message", {"msg": f"Player joined {room_id}"}, to=room_id, broadcast=True)
+    emit(
+        "update_room",
+        room_api.get_room_state(room_id).to_dict(),
+        to=room_id,
+    )
 
 
 @socketio.on("leave_room")
@@ -22,17 +27,22 @@ def handle_leave_room(data: Dict[str, str]) -> None:
     room_id: str = data["room_id"]
     leave_room(room_id)
     emit("message", {"msg": f"Player left {room_id}"}, to=room_id, broadcast=True)
+    emit(
+        "update_room",
+        room_api.get_room_state(room_id).to_dict(),
+        to=room_id,
+    )
 
 
 def update_room(room_id: str) -> None:
     """
     Update the room.
     """
-    emit(
+    print(f"Updating room {room_id}")
+    socketio.emit(
         "update_room",
         room_api.get_room_state(room_id).to_dict(),
         to=room_id,
-        broadcast=True,
     )
 
 

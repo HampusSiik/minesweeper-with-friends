@@ -27,6 +27,7 @@ class RoomAPI:
         Initializes a new RoomAPI object.
         """
         self._room_registry = RoomRegistry()
+        self._update_observers = []
 
     def _notify_observers(self, room_id: str) -> None:
         """
@@ -46,6 +47,7 @@ class RoomAPI:
             observer (Callable[[RoomState], None]): The observer to add.
         """
         self._update_observers.append(observer)
+        self._room_registry.add_update_observer(observer)
 
     def create_room(self, options: GameOptions) -> str:
         """

@@ -2,8 +2,10 @@
 from flask import Flask, session
 from flask_socketio import SocketIO
 from os import environ
+from typing import Dict
 
 from minesweeper_room.roomapi import RoomAPI
+from minesweeper_room.player import Player
 
 
 DEBUG = bool(int(environ.get("DEBUG", True)))
@@ -29,6 +31,11 @@ The `socketio` object is the Flask-SocketIO extension that handles WebSocket con
 room_api = RoomAPI()
 """
 The `room_api` object is the RoomAPI object that handles the room creation and management.
+"""
+
+players: Dict[str, Player] = {}
+"""
+The `players` dictionary maps usernames to player objects.
 """
 
 from .endpoints import *

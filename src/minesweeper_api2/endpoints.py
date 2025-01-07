@@ -1,16 +1,15 @@
 from typing import Dict, Optional, Any
-from flask import request, redirect
+from flask import request, redirect, render_template
 
 from minesweeper.position import from_dict
 from minesweeper_room.roomapi import GameOptions, Player
-from .api_app import app, session, room_api
+from .api_app import app, session, room_api, players
 
 
 def _no_player() -> Any:
     """
     Handles the case where no player is set.
     """
-
     return redirect("/login")
 
 
@@ -28,7 +27,10 @@ def index() -> Any:
     Get the index page.
     """
 
-    return _not_implemented()
+    if not session.get("player"):
+        return redirect("/login")
+
+    return render_template("index.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -41,12 +43,13 @@ def login() -> Any:
     if not request_data:
         return {"error": "No data provided."}, 400
 
-    player = request_data.get("player")
-    if not player:
+    username = request_data.get("username")
+    if not username:
         return {"error": "Invalid data provided."}, 400
 
-    session["player"] = Player(player)
+    players[username] = Player(username)
 
+    session["player"] = username
     return redirect("/")
 
 
@@ -56,7 +59,7 @@ def get_login() -> Any:
     Get the login page.
     """
 
-    return _not_implemented()
+    return render_template("login.html")
 
 
 @app.route("/rooms", methods=["POST"])
@@ -84,7 +87,7 @@ def create_room() -> Any:
 
     room_id = room_api.create_room(game_options)
 
-    return redirect(f"/rooms/{room_id}")
+    return {"room_id": room_id}
 
 
 # join_room
@@ -101,8 +104,8 @@ def get_room(room_id: str) -> Any:
     if not player:
         return _no_player()
 
-    room_api.join_room(room_id, player)
-    return _not_implemented()
+    room_api.join_room(room_id, players.get(player, Player(player)))
+    return render_template("room.html", room_id=room_id)
 
 
 # leave_room
@@ -117,7 +120,7 @@ def leave_room(room_id: str) -> Any:
 
     player = session.get("player")
     if player is not None:
-        room_api.leave_room(room_id, player)
+        room_api.leave_room(room_id, players.get(player, Player(player)))
 
     return redirect("/")
 
@@ -128,15 +131,17 @@ def left_click() -> Any:
     Handle the left click event.
     """
 
-    player: Optional[Player] = session.get("player")
-    if not player:
+    username: Optional[str] = session.get("player")
+    if not username:
         return _no_player()
 
-    request_data: Optional[Dict[str, int]] = request.json
+    request_data: Optional[Dict[str, Any]] = request.json
     if not request_data:
         return {"error": "No data provided."}, 400
 
-    position = from_dict(request_data)
+    position = from_dict(request_data["position"])
+
+    player: Player = players.get(username, Player(username))
 
     player.left_click(position)
 
@@ -149,15 +154,20 @@ def right_click() -> Any:
     Handle the right click event.
     """
 
-    player: Optional[Player] = session.get("player")
+    username: Optional[str] = session.get("player")
+    if not username:
+        return _no_player()
+
+    player: Optional[Player] = players.get(username)
+
     if not player:
         return _no_player()
 
-    request_data: Optional[Dict[str, int]] = request.json
+    request_data: Optional[Dict[str, Any]] = request.json
     if not request_data:
         return {"error": "No data provided."}, 400
 
-    position = from_dict(request_data)
+    position = from_dict(request_data["position"])
 
     player.right_click(position)
 
@@ -169,6 +179,9 @@ def logout() -> Any:
     """
     Logout the player.
     """
+    username = session.get("player")
+    if username is not None:
+        players.pop(username, None)
 
     session.pop("player", None)
     return redirect("/")

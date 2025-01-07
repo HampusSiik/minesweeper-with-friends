@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Main Menu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h1>Welcome to Minesweeper</h1>
+    <div class="menu">
+        <button id="create-room">Create Game</button>
+        <button id="join-room">Join Game</button>
+    </div>
+
+    <script>
+        document.getElementById("create-room").addEventListener("click", async () => {
+            await fetch("/rooms", {
+                method: "POST",
+                redirect: "follow",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ "mines": 500, "rows": 50, "cols": 50 }),
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                window.location.href = `/rooms/${data.room_id}`;
+            }).catch((_) => {
+                window.location.href = `/login`
+            });
+        });
+
+        document.getElementById("join-room").addEventListener("click", () => {
+            const roomId = prompt("Enter the Room ID to join:");
+            if (roomId) {
+                window.location.href = `/rooms/${roomId}`;
+            }
+        });
+    </script>
+</body>
+
+</html>

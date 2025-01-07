@@ -2,7 +2,7 @@
 
 from os import environ
 
-from minesweeper_api.api_app import app, socketio
+from minesweeper_api2.api_app import app, socketio
 
 DEBUG = bool(int(environ.get("DEBUG", True)))
 

@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List, Callable
 
 from .gameoptions import GameOptions
 from .player import Player
@@ -16,8 +16,33 @@ class RoomRegistry:
     The rooms that are currently registered.
     """
 
+    _update_observers: List[Callable[[str], None]]
+    """
+    The list of observers to notify when a room is updated.
+    """
+
     def __init__(self):
         self._rooms = {}
+        self._update_observers = []
+
+    def add_update_observer(self, observer: Callable[[str], None]) -> None:
+        """
+        Adds an observer to the list of observers.
+
+        Args:
+            observer (Callable[[str], None]): The observer to add.
+        """
+        self._update_observers.append(observer)
+
+    def _notify_observers(self, room_id: str) -> None:
+        """
+        Notifies all observers that a room has been updated.
+
+        Args:
+            room_id (str): The ID of the room.
+        """
+        for observer in self._update_observers:
+            observer(room_id)
 
     def new_room(self, options: GameOptions, room_id: str) -> None:
         """
@@ -27,7 +52,9 @@ class RoomRegistry:
             options (GameOptions): The options for the room.
             room_id (str): The ID of the room.
         """
-        self._rooms[room_id] = Room(options)
+        room = Room(options)
+        self._rooms[room_id] = room
+        room.add_update_observer(lambda: self._notify_observers(room_id))
 
     def add_player(self, room_id: str, player: Player) -> None:
         """
