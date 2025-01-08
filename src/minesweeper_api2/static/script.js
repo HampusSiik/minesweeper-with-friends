@@ -13,18 +13,20 @@ const joinRoom = () => {
     );
 }
 
-const createCell = (rowIndex, colIndex) => {
+const createCell = (rowIndex, colIndex, won, lost) => {
     const cell = document.createElement("div");
     cell.classList.add("cell");
-    cell.addEventListener("click", () => handleLeftClick(rowIndex, colIndex));
-    cell.addEventListener("contextmenu", (event) => {
-        event.preventDefault();
-        handleRightClick(rowIndex, colIndex);
-    });
+    if (!(won || lost)) {
+        cell.addEventListener("click", () => handleLeftClick(rowIndex, colIndex));
+        cell.addEventListener("contextmenu", (event) => {
+            event.preventDefault();
+            handleRightClick(rowIndex, colIndex);
+        });
+    }
     return cell;
 }
 
-const updateGrid = (board) => {
+const updateGrid = (board, won, lost) => {
     const grid = document.getElementById("grid");
     grid.innerHTML = "";
     grid.style.gridTemplateColumns = `repeat(${board[
@@ -37,7 +39,7 @@ const updateGrid = (board) => {
     1fr)`;
     board.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
-            const cellElement = createCell(rowIndex, colIndex);
+            const cellElement = createCell(rowIndex, colIndex, won, lost);
             if (cell.is_revealed) {
                 cellElement.classList.add("revealed");
                 cellElement.textContent = cell.is_mine ? "💣" : cell.adjacent_mines || "";
@@ -84,7 +86,7 @@ const handleRightClick = async (row, col) => {
 };
 
 socket.on("update_room", (data) => {
-    updateGrid(data.show_board);
+    updateGrid(data.show_board, data.is_won, data.is_lost);
     console.log("update_room", data);
 });
 
