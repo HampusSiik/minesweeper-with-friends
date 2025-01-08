@@ -105,7 +105,7 @@ def get_room(room_id: str) -> Any:
         return _no_player()
 
     room_api.join_room(room_id, players.get(player, Player(player)))
-    return render_template("room.html", room_id=room_id)
+    return render_template("room.html", room_id=room_id, player_name=player)
 
 
 # leave_room
