@@ -15,7 +15,7 @@ As a gamer with friends I want to be able to play MineSweeper online with them.
 - [x] Implement the game
 - [x] Make a functional web API
 - [x] Implement a web user interface
-- [ ] Make it possible to host a game
+- [x] Make it possible to host a game
 - [x] Make it possible to join a game
 
 ## The Boulders
@@ -59,7 +59,6 @@ As a user I want to be able to host a game so that my friends can join.
 #### Definition of done
 
 - [x] Make it possible to create a game with a unique id
-- [ ] Make it possible to set a password for the game
 - [x] Make it possible to set a username in the game
 
 ### Join a game

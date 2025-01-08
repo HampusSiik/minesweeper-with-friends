@@ -3,6 +3,6 @@ from setuptools import setup, find_packages
 
 setup(
     name="minesweeper",
-    version="0.4.2",
+    version="1.0.0",
     packages=find_packages(),
 )
