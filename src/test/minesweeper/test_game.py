@@ -37,9 +37,9 @@ class TestMinesweeper(unittest.TestCase):
 
     def test_game_lost_true(self):
         m = Minesweeper()
-        m.generate_game(1, 2, 1)
+        m.generate_game(1, 3, 1)
         m.left_click_cell((0, 0))
-        m.left_click_cell((0, 1))
+        m.left_click_cell((0, 2))
         self.assertTrue(m.is_lost())
 
     def test_generate_game(self):

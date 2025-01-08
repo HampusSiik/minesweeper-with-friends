@@ -59,7 +59,8 @@ class Board:
         positions = [
             (x, y) for x in range(len(self._board)) for y in range(len(self._board[0]))
         ]
-        positions.remove(start_position)
+        for position in self._neighbouring_positions(start_position):
+            positions.remove(position)
         mines_positions = random.sample(positions, mines)
         for x, y in mines_positions:
             self._board[x][y] = CellContainer.create_mine()

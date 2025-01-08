@@ -52,8 +52,8 @@ class TestBoard(unittest.TestCase):
 
     def test_is_mine_mine(self):
         self._board.generate_board(10, 10)
-        self._board.place_mines(99, (0, 0))
-        self.assertTrue(self._board._board[0][1].is_mine(), "Mine not placed correctly")
+        self._board.place_mines(96, (0, 0))
+        self.assertTrue(self._board._board[0][2].is_mine(), "Mine not placed correctly")
 
     def test_is_flagged_empty(self):
         self._board.generate_board(10, 10)
