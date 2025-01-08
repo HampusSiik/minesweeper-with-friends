@@ -64,7 +64,8 @@ class ShowCell:
         Check if a cell is a mine.
 
         Returns:
-            bool: True if the cell is a mine, False otherwise. None if the cell is not revealed.
+            bool: True if the cell is a mine, False otherwise. None if the
+            cell is not revealed.
         """
         return self._is_mine
 

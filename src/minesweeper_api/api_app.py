@@ -22,7 +22,8 @@ The `app` object is the Flask application that will handle HTTP requests.
 app.config["SECRET_KEY"] = SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins=CORS_ALLOWED_ORIGINS)
 """
-The `socketio` object is the Flask-SocketIO extension that will handle WebSocket connections.
+The `socketio` object is the Flask-SocketIO extension that will handle
+WebSocket connections.
 """
 
 games: Dict[str, Minesweeper] = {}

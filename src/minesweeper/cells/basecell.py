@@ -16,7 +16,7 @@ class BaseCell(ABC):
         Check if the cell is a mine.
 
         Returns:
-            bool: True if the cell is a mine, False otherwise
+            bool: True if the cell is a mine, False otherwise.
         """
         pass
 
@@ -43,7 +43,7 @@ class BaseCell(ABC):
         Unwrap the cell.
 
         Returns:
-            Cell: self.
+            Cell: self
         """
         return self
 

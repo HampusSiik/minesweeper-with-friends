@@ -61,7 +61,7 @@ class GameOptions:
         Converts the GameOptions object to a dictionary.
 
         Returns:
-            Dict[str, int]: The dictionary representation of the GameOptions object.
+            Dict[str, int]: The dictionary representation of the GameOptions.
         """
         return {
             "mines": self._mines,

@@ -35,7 +35,12 @@ class ShowBoard:
             is_flagged = board.is_flagged(pos)
             is_revealed = board.is_revealed(pos)
             if is_revealed:
-                return ShowCell(adjacent_mines, is_mine, is_flagged, is_revealed)
+                return ShowCell(
+                    adjacent_mines,
+                    is_mine,
+                    is_flagged,
+                    is_revealed,
+                )
             return ShowCell(None, None, is_flagged, is_revealed)
 
         self._board = [
@@ -58,13 +63,22 @@ class ShowBoard:
         Returns:
             str: String representation of the ShowBoard object.
         """
-        return "\n".join(" ".join(str(cell) for cell in row) for row in self._board)
+        return "\n".join(
+            " ".join(
+                str(
+                    cell,
+                )
+                for cell in row
+            )
+            for row in self._board
+        )
 
     def to_dict(self) -> List[List[CellDict]]:
         """
-        Converts the ShowBoard object to a dictionary that can be serialized into JSON.
+        Converts the ShowBoard object to a dictionary that can be serialized
+        into JSON.
 
         Returns:
-            List[List[CellDict]]: The dictionary representation of the ShowBoard object.
+            List[List[CellDict]]: The dictionary representation of the ShowBoard.
         """
         return [[cell.to_dict() for cell in row] for row in self._board]

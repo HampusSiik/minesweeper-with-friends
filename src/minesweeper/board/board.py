@@ -32,7 +32,15 @@ class Board:
             cols (int): Height of the board.
         """
         self._board = [
-            [CellContainer.create_empty() for _ in range(cols)] for _ in range(rows)
+            [
+                CellContainer.create_empty()
+                for _ in range(
+                    cols,
+                )
+            ]
+            for _ in range(
+                rows,
+            )
         ]
 
     def shape(self) -> Tuple[int, int]:
@@ -54,10 +62,20 @@ class Board:
 
         Args:
             mines (int): Number of mines to place.
-            start_position (Position): Position where the first cell was clicked.
+            start_position (Position): Position of the first cell.
         """
         positions = [
-            (x, y) for x in range(len(self._board)) for y in range(len(self._board[0]))
+            (x, y)
+            for x in range(
+                len(
+                    self._board,
+                ),
+            )
+            for y in range(
+                len(
+                    self._board[0],
+                ),
+            )
         ]
         for position in self._neighbouring_positions(start_position):
             positions.remove(position)
@@ -72,7 +90,19 @@ class Board:
         Returns:
             str: String representation of the board.
         """
-        return "\n".join(["".join([str(cell) for cell in row]) for row in self._board])
+        return "\n".join(
+            [
+                "".join(
+                    [
+                        str(
+                            cell,
+                        )
+                        for cell in row
+                    ],
+                )
+                for row in self._board
+            ]
+        )
 
     def surrounding_mines(self, position: Position) -> int:
         """
@@ -121,14 +151,17 @@ class Board:
             if (i, j) != position
         )
 
-    def _neighbouring_positions(self, position: Position) -> Generator[Position]:
+    def _neighbouring_positions(
+        self,
+        position: Position,
+    ) -> Generator[Position]:
         """
         Range of positions around position that are within the board.
 
         Args:
             position (Position): Position to get the range around.
         Returns:
-            Generator[Position]: List of positions around position that are within the board.
+            Generator[Position]: List of positions around position.
         """
         x, y = position
         return (
@@ -139,13 +172,13 @@ class Board:
 
     def show_nearby_mines(self) -> str:
         """
-        String representation of the board with the number of mines around each cell.
-        And mines are represented by '*'.
+        String representation of the board with the number of mines around
+        each cell and mines are represented by '*'.
 
         Args:
             position (Position): Position to check.
         Returns:
-            str: String representation of the board with the number of mines around each cell.
+            str: String representation of the board.
         """
         return "\n".join(
             self._show_nearby_mines_row(i) for i in range(len(self._board))
@@ -153,8 +186,8 @@ class Board:
 
     def _show_nearby_mines_cell(self, position: Position) -> str:
         """
-        String representation of a single cell. If the cell is a mine, it returns '*'.
-        Otherwise, it returns the number of surrounding mines.
+        String representation of a single cell. If the cell is a mine, it
+        returns '*' otherwise, it returns the number of surrounding mines.
 
         Args:
             position (Position): Position to check.
@@ -170,8 +203,8 @@ class Board:
 
     def _show_nearby_mines_row(self, row: int) -> str:
         """
-        String representation of a row of cells. If the cell is a mine, it returns '*'.
-        Otherwise, it returns the number of surrounding mines.
+        String representation of a row of cells. If the cell is a mine, it
+        returns '*' otherwise, it returns the number of surrounding mines.
 
         Args:
             row int: Row number of the row to check.
@@ -179,7 +212,14 @@ class Board:
             str: String representation of the row.
         """
         return "".join(
-            self._show_nearby_mines_cell((row, i)) for i in range(len(self._board[row]))
+            self._show_nearby_mines_cell(
+                (row, i),
+            )
+            for i in range(
+                len(
+                    self._board[row],
+                ),
+            )
         )
 
     def _function_on_position(
@@ -228,7 +268,10 @@ class Board:
         Returns:
             bool: True if the position is revealed, False otherwise.
         """
-        return self._function_on_position(position, CellContainer.is_revealed)
+        return self._function_on_position(
+            position,
+            CellContainer.is_revealed,
+        )
 
     def toggle_flag(self, position: Position) -> None:
         """
@@ -237,7 +280,10 @@ class Board:
         Args:
             position (Position): Position to toggle the flag on.
         """
-        self._function_on_position(position, CellContainer.toggle_flag)
+        self._function_on_position(
+            position,
+            CellContainer.toggle_flag,
+        )
 
     def reveal(self, position: Position) -> None:
         """
@@ -256,7 +302,17 @@ class Board:
             List[Position]: All positions on the board.
         """
         return [
-            (x, y) for x in range(len(self._board)) for y in range(len(self._board[0]))
+            (x, y)
+            for x in range(
+                len(
+                    self._board,
+                ),
+            )
+            for y in range(
+                len(
+                    self._board[0],
+                ),
+            )
         ]
 
     def mines(self) -> int:
@@ -266,4 +322,9 @@ class Board:
         Returns:
             int: The number of mines on the board.
         """
-        return sum(self.is_mine(position) for position in self.all_positions())
+        return sum(
+            self.is_mine(
+                position,
+            )
+            for position in self.all_positions()
+        )

@@ -112,10 +112,11 @@ class Player:
         self, callback: Callable[[Player, Position], None]
     ) -> None:
         """
-        Sets the callback function to call when the player right-clicks on a cell.
+        Sets the callback function to call when the player right-clicks on a
+        cell.
 
         Args:
-            callback (Callable[[Player, Position], None]): The callback function.
+            callback (Callable[[Player, Position], None]): The callback.
         """
         self._right_click_callback = callback
 
@@ -123,10 +124,11 @@ class Player:
         self, callback: Callable[[Player, Position], None]
     ) -> None:
         """
-        Sets the callback function to call when the player left-clicks on a cell.
+        Sets the callback function to call when the player left-clicks on a
+        cell.
 
         Args:
-            callback (Callable[[Player, Position], None]): The callback function.
+            callback (Callable[[Player, Position], None]): The callback.
         """
         self._left_click_callback = callback
 

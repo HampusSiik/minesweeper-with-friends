@@ -97,7 +97,11 @@ class RoomAPI:
         self._room_registry.remove_player(room_id, player)
         self._notify_observers(room_id)
 
-    def update_room_options(self, room_id: str, options: GameOptions) -> None:
+    def update_room_options(
+        self,
+        room_id: str,
+        options: GameOptions,
+    ) -> None:
         """
         Updates the options of the room.
 

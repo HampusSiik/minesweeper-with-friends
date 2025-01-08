@@ -31,7 +31,7 @@ class Cell(Protocol):
         Returns True if the cell is revealed, False otherwise.
 
         Returns:
-            bool: True if the cell is revealed, False otherwise
+            bool: True if the cell is revealed, False otherwise.
         """
         ...
 

@@ -15,7 +15,8 @@ class CellWrapper(ABC):
 
     def __init__(self, cell: Cell):
         """
-        Initializes a new instance of the CellWrapper class containing the given cell.
+        Initializes a new instance of the CellWrapper class containing the
+        given cell.
 
         Args:
             cell (Cell): The cell to wrap.

@@ -45,7 +45,12 @@ class Minesweeper:
             bool: True if the game is lost, False otherwise.
         """
         return any(
-            self._board.is_mine(position) and self._board.is_revealed(position)
+            self._board.is_mine(
+                position,
+            )
+            and self._board.is_revealed(
+                position,
+            )
             for position in self._board.all_positions()
         )
 
@@ -58,7 +63,12 @@ class Minesweeper:
         """
         return self.mines_generated() and (
             all(
-                self._board.is_mine(position) or self._board.is_revealed(position)
+                self._board.is_mine(
+                    position,
+                )
+                or self._board.is_revealed(
+                    position,
+                )
                 for position in self._board.all_positions()
             )
             and not self.is_lost()
@@ -139,9 +149,9 @@ class Minesweeper:
         Args:
             position (Position): Position to reveal nearby cells.
         """
-        if self._board.surrounding_mines(position) <= self._board.surrounding_flags(
-            position
-        ):
+        if self._board.surrounding_mines(
+            position,
+        ) <= self._board.surrounding_flags(position):
             positions_to_reveal = [
                 neighbor
                 for neighbor in self._board.neighbours(position)

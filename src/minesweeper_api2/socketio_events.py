@@ -11,7 +11,12 @@ def handle_join_room(data: Dict[str, str]) -> None:
     """
     room_id: str = data["room_id"]
     join_room(room_id)
-    emit("message", {"msg": f"Player joined {room_id}"}, to=room_id, broadcast=True)
+    emit(
+        "message",
+        {"msg": f"Player joined {room_id}"},
+        to=room_id,
+        broadcast=True,
+    )
     emit(
         "update_room",
         room_api.get_room_state(room_id).to_dict(),
@@ -26,7 +31,12 @@ def handle_leave_room(data: Dict[str, str]) -> None:
     """
     room_id: str = data["room_id"]
     leave_room(room_id)
-    emit("message", {"msg": f"Player left {room_id}"}, to=room_id, broadcast=True)
+    emit(
+        "message",
+        {"msg": f"Player left {room_id}"},
+        to=room_id,
+        broadcast=True,
+    )
     emit(
         "update_room",
         room_api.get_room_state(room_id).to_dict(),

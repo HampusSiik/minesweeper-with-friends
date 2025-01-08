@@ -25,12 +25,14 @@ app.config["SECRET_KEY"] = SECRET_KEY
 
 socketio = SocketIO(app, cors_allowed_origins=CORS_ALLOWED_ORIGINS)
 """
-The `socketio` object is the Flask-SocketIO extension that handles WebSocket connections.
+The `socketio` object is the Flask-SocketIO extension that handles WebSocket
+connections.
 """
 
 room_api = RoomAPI()
 """
-The `room_api` object is the RoomAPI object that handles the room creation and management.
+The `room_api` object is the RoomAPI object that handles the room creation
+and management.
 """
 
 players: Dict[str, Player] = {}
