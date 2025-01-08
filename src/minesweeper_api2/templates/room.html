@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
-</script>
-<link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <header>
         <button id="back-to-menu">Back to Menu</button>
-        <div id="game-info" class="game-info"></div>
+        <div id="game-info" class="game-info">
+            <p id="player-name">{{ player_name }}</p>
+            <p id="room-id">{{ room_id }}</p>
+        </div>
     </header>
     <div id="grid" class="grid"></div>
 
     <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
     <script src="/static/script.js"></script>
 </body>
+
 </html>
