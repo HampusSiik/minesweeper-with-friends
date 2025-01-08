@@ -3,7 +3,7 @@ const host = location.host;
 const apiBaseUrl = `http://${host}`;
 const socket = io(apiBaseUrl);
 
-let roomId = location.pathname.split("/")[2];
+const roomId = location.pathname.split("/")[2];
 
 const joinRoom = () => {
     socket.emit("join_room",
