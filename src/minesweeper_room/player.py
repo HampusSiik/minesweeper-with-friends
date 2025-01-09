@@ -29,6 +29,11 @@ class Player:
     The callback function to call when the player left-clicks on a cell.
     """
 
+    _reset_callback: Callable[[Player], None]
+    """
+    The callback function to call when the player resets the game.
+    """
+
     @staticmethod
     def from_dict(data: Dict[str, str]) -> Player:
         """
@@ -59,7 +64,7 @@ class Player:
         self._name = name
         self._leave_callback = self._right_click_callback = (
             self._left_click_callback
-        ) = Player.standard_callback
+        ) = self._reset_callback = Player.standard_callback
 
     def name(self) -> str:
         """
@@ -87,6 +92,12 @@ class Player:
         Handles a left-click action on a cell.
         """
         self._left_click_callback(self, position)
+
+    def reset_game(self) -> None:
+        """
+        Resets the game and calls the reset callback function.
+        """
+        self._reset_callback(self)
 
     def to_dict(self) -> Dict[str, str]:
         """
@@ -139,3 +150,12 @@ class Player:
         self._leave_callback = self._right_click_callback = (
             self._left_click_callback
         ) = Player.standard_callback
+
+    def set_reset_callback(self, callback: Callable[[Player], None]) -> None:
+        """
+        Sets the callback function to call when the player resets the game.
+
+        Args:
+            callback (Callable[[Player], None]): The callback function.
+        """
+        self._reset_callback = callback

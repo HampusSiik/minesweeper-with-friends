@@ -73,6 +73,7 @@ class Room:
         player.set_leave_callback(self.remove_player)
         player.set_left_click_callback(self._left_click)
         player.set_right_click_callback(self._right_click)
+        player.set_reset_callback(self._restart_game)
         self._players.append(player)
         self._notify_observers()
 
@@ -96,6 +97,13 @@ class Room:
             position (Position): The position clicked.
         """
         self._game.right_click_cell(position)
+        self._notify_observers()
+
+    def _restart_game(self, player: Player) -> None:
+        """
+        Restarts the game.
+        """
+        self.start_game()
         self._notify_observers()
 
     def remove_player(self, player: Player) -> None:

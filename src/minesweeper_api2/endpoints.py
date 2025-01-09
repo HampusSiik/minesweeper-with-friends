@@ -174,6 +174,26 @@ def right_click() -> Any:
     return "", 204
 
 
+@app.route("/reset", methods=["POST"])
+def reset() -> Any:
+    """
+    Reset the game.
+    """
+
+    username: Optional[str] = session.get("player")
+    if not username:
+        return _no_player()
+
+    player: Optional[Player] = players.get(username)
+
+    if not player:
+        return _no_player()
+
+    player.reset_game()
+
+    return "", 204
+
+
 @app.route("/logout", methods=["POST"])
 def logout() -> Any:
     """

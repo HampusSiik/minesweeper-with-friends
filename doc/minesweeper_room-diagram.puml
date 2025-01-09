@@ -66,6 +66,7 @@ package minesweeper_room {
         - _leave_callback: Callable[[Player], None]
         - _right_click_callback: Callable[[Player, Position], None]
         - _left_click_callback: Callable[[Player, Position], None]
+        - _reset_callback: Callable[[Player], None]
 
         + __init__(name: str)
         + name() -> str
@@ -77,6 +78,8 @@ package minesweeper_room {
         + set_right_click_callback(callback: Callable[[Player, Position], None]) -> None
         + set_left_click_callback(callback: Callable[[Player, Position], None]) -> None
         + reset_callbacks() -> None
+        + set_reset_callback(callback: Callable[[Player], None]) -> None
+        + reset_game() -> None
         # standard_callback(*_) -> None
 
     }
