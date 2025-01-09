@@ -95,7 +95,7 @@ As a host I want to be able to start a new game without having to make a new roo
 
 #### Definition of done
 
-- [ ] Add a new game functionality in the model.
+- [ ] Add a new game functionality in the API.
 - [ ] Add new game button in the game.
 
 ### Make the game more responsive
