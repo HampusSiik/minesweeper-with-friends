@@ -28,6 +28,7 @@ const createCell = (rowIndex, colIndex, won, lost) => {
 
 const updateGrid = (board, won, lost) => {
     const grid = document.getElementById("grid");
+    grid.addEventListener("contextmenu", (event) => event.preventDefault());
     grid.innerHTML = "";
     grid.style.gridTemplateColumns = `repeat(${board[
         0
