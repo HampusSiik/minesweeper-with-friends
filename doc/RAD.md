@@ -105,4 +105,4 @@ As a player I want the game to be more responsive.
 #### Definition of done
 
 - [ ] Reduce the package sent on update.
-- [ ] Disable context menu in between cells.
+- [x] Disable context menu in between cells.
