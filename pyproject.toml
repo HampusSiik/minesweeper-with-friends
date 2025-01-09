@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "minesweeper_with_friends"
-version = "1.0.2"
+version = "1.1.1"
 description = "The minesweeper game but with friends."
 authors = [
     { name = "Hampus Siik", email = "hampus.siik@gmail.com" }

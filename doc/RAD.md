@@ -25,7 +25,7 @@ As a player I want the game to be fast and responsive and look nicer.
 #### Definition of done
 
 - [ ] Clarify the game state
-- [ ] Make new game in room
+- [x] Make new game in room
 - [ ] Make the game more responsive
 
 ## The Boulders
@@ -89,14 +89,14 @@ As a player I want it to be clear wether I have won or lost the game.
 - [ ] Make it clear to the user when the game is won.
 - [ ] Make it clear to the user when the game is lost.
 
-### Make new game in room
+### *Make new game in room*
 
 As a host I want to be able to start a new game without having to make a new room.
 
 #### Definition of done
 
 - [x] Add a new game functionality in the API.
-- [ ] Add new game button in the game.
+- [x] Add new game button in the game.
 
 ### Make the game more responsive
 
