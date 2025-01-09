@@ -48,7 +48,6 @@ def update_room(room_id: str) -> None:
     """
     Update the room.
     """
-    print(f"Updating room {room_id}")
     socketio.emit(
         "update_room",
         room_api.get_room_state(room_id).to_dict(),
