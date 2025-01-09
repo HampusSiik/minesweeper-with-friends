@@ -6,7 +6,7 @@ This is document contains the high level userstories and some other core ideas.
 
 This is the highest level user story
 
-### Minesweeper With Friends
+### *Minesweeper With Friends*
 
 As a gamer with friends I want to be able to play MineSweeper online with them.
 
@@ -22,7 +22,7 @@ As a gamer with friends I want to be able to play MineSweeper online with them.
 
 These are slightly smaller pieces of the system that should be smaller and more managable.
 
-### Web user interface
+### *Web user interface*
 
 As a user I want to be able to play the game in my webbrowser.
 
@@ -52,7 +52,7 @@ As an API developer I need an implementation of the game to make it possible to 
 - [x] Make it possible to click on a cell
 - [x] Make it possible to get the game state
 
-### Host a game
+### *Host a game*
 
 As a user I want to be able to host a game so that my friends can join.
 
@@ -61,7 +61,7 @@ As a user I want to be able to host a game so that my friends can join.
 - [x] Make it possible to create a game with a unique id
 - [x] Make it possible to set a username in the game
 
-### Join a game
+### *Join a game*
 
 As a user I want to be able to join a game so that I can play with my friends.
 
