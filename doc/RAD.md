@@ -18,7 +18,7 @@ As a gamer with friends I want to be able to play MineSweeper online with them.
 - [x] Make it possible to host a game
 - [x] Make it possible to join a game
 
-### Enhanced user experience
+### Enhance user experience
 
 As a player I want the game to be fast and responsive and look nicer.
 
