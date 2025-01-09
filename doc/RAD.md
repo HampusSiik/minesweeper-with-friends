@@ -18,6 +18,16 @@ As a gamer with friends I want to be able to play MineSweeper online with them.
 - [x] Make it possible to host a game
 - [x] Make it possible to join a game
 
+### Enhanced user experience
+
+As a player I want the game to be fast and responsive and look nicer.
+
+#### Definition of done
+
+- [ ] Clarify the game state
+- [ ] Make new game in room
+- [ ] Make the game more responsive
+
 ## The Boulders
 
 These are slightly smaller pieces of the system that should be smaller and more managable.
@@ -69,3 +79,30 @@ As a user I want to be able to join a game so that I can play with my friends.
 
 - [x] Make it possible to join a game with a unique id
 - [x] Make it possible to set a username in the game
+
+### Clarify the game state
+
+As a player I want it to be clear wether I have won or lost the game.
+
+#### Definition of done
+
+- [ ] Make it clear to the user when the game is won.
+- [ ] Make it clear to the user when the game is lost.
+
+### Make new game in room
+
+As a host I want to be able to start a new game without having to make a new room.
+
+#### Definition of done
+
+- [ ] Add a new game functionality in the model.
+- [ ] Add new game button in the game.
+
+### Make the game more responsive
+
+As a player I want the game to be more responsive.
+
+#### Definition of done
+
+- [ ] Reduce the package sent on update.
+- [ ] Disable context menu in between cells.
