@@ -95,4 +95,10 @@ document.getElementById("back-to-menu").addEventListener("click", () => {
     window.location.href = "/";
 });
 
+document.getElementById("restart-game").addEventListener("click", () => {
+    fetch(`${apiBaseUrl}/reset`, {
+        method: "POST"
+    });
+});
+
 joinRoom();
