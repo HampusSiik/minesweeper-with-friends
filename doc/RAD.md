@@ -24,7 +24,7 @@ As a player I want the game to be fast and responsive and look nicer.
 
 #### Definition of done
 
-- [ ] Clarify the game state
+- [x] Clarify the game state
 - [x] Make new game in room
 - [x] Make the game more responsive
 
@@ -80,14 +80,14 @@ As a user I want to be able to join a game so that I can play with my friends.
 - [x] Make it possible to join a game with a unique id
 - [x] Make it possible to set a username in the game
 
-### Clarify the game state
+### *Clarify the game state*
 
 As a player I want it to be clear wether I have won or lost the game.
 
 #### Definition of done
 
-- [ ] Make it clear to the user when the game is won.
-- [ ] Make it clear to the user when the game is lost.
+- [x] Make it clear to the user when the game is won.
+- [x] Make it clear to the user when the game is lost.
 
 ### *Make new game in room*
 
