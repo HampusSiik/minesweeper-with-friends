@@ -15,3 +15,11 @@ class TestShowBoard(unittest.TestCase):
 
     def test_showboard(self):
         sb = ShowBoard(self.b)
+        board = sb.get_board()
+        self.assertEqual(len(board), 5)
+        for row in board:
+            self.assertEqual(len(row), 10)
+
+    def test_show(self):
+        sb = ShowBoard(self.b)
+        self.assertEqual(sb.show(), (("#" * 10 + "\n") * 5).strip())

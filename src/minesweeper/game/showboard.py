@@ -64,7 +64,7 @@ class ShowBoard:
             str: String representation of the ShowBoard object.
         """
         return "\n".join(
-            " ".join(
+            "".join(
                 str(
                     cell,
                 )
