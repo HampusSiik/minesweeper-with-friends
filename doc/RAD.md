@@ -26,7 +26,7 @@ As a player I want the game to be fast and responsive and look nicer.
 
 - [ ] Clarify the game state
 - [x] Make new game in room
-- [ ] Make the game more responsive
+- [x] Make the game more responsive
 
 ## The Boulders
 
@@ -98,11 +98,11 @@ As a host I want to be able to start a new game without having to make a new roo
 - [x] Add a new game functionality in the API.
 - [x] Add new game button in the game.
 
-### Make the game more responsive
+### *Make the game more responsive*
 
 As a player I want the game to be more responsive.
 
 #### Definition of done
 
-- [ ] Reduce the package sent on update.
+- [x] Reduce the package sent on update.
 - [x] Disable context menu in between cells.
