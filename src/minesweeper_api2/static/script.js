@@ -5,6 +5,16 @@ const socket = io(apiBaseUrl);
 
 const roomId = location.pathname.split("/")[2];
 
+const resetEmoji = (isWon, isLost) => {
+    if (isWon) {
+        return "😎";
+    } else if (isLost) {
+        return "😵";
+    } else {
+        return "😊";
+    }
+}
+
 const joinRoom = () => {
     socket.emit("join_room",
         {
@@ -90,17 +100,24 @@ const handleRightClick = async (row, col) => {
 
 socket.on("update_room", (data) => {
     updateGrid(createBoardObject(data.show_board), data.is_won, data.is_lost);
+    document.getElementById("restart-game").textContent = resetEmoji(data.is_won, data.is_lost);
     console.log("update_room", data);
 });
 
-document.getElementById("back-to-menu").addEventListener("click", () => {
+const toMainMenu = () => {
     window.location.href = "/";
-});
+};
+document.getElementById("back-to-menu").addEventListener("click", toMainMenu);
 
-document.getElementById("restart-game").addEventListener("click", () => {
-    socket.emit("reset_game", {
-        room_id: roomId
+const makeRestartButton = (button) => {
+    button.addEventListener("click", () => {
+        socket.emit("reset_game", {
+            room_id: roomId
+        });
     });
-});
+    return button;
+}
+
+makeRestartButton(document.getElementById("restart-game"));
 
 joinRoom();
