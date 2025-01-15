@@ -16,7 +16,7 @@ class ShowBoard:
     _board is a 2D array of ShowCell objects.
     """
 
-    def __init__(self, board: Board):
+    def __init__(self, board: Board, lost: bool = False):
         """
         Initializes a ShowBoard object with the given Board object.
 
@@ -34,7 +34,7 @@ class ShowBoard:
             is_mine = board.is_mine(pos)
             is_flagged = board.is_flagged(pos)
             is_revealed = board.is_revealed(pos)
-            if is_revealed:
+            if is_revealed or lost:
                 return ShowCell(
                     adjacent_mines,
                     is_mine,

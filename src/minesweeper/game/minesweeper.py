@@ -140,7 +140,7 @@ class Minesweeper:
         Returns:
             ShowBoard: Show board.
         """
-        return ShowBoard(self._board)
+        return ShowBoard(self._board, self.is_lost())
 
     def _reveal_nearby_cells(self, position: Position) -> None:
         """
