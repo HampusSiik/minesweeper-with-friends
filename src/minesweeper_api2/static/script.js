@@ -53,37 +53,21 @@ const updateGrid = (board, won, lost) => {
 };
 
 const handleLeftClick = async (row, col) => {
-    await fetch(`${apiBaseUrl
-        }/left_click`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                room_id: roomId, position: {
-                    row, col
-                }
-            }),
+    socket.emit("left_click", {
+        room_id: roomId,
+        position: {
+            row, col
         }
-    );
+    });
 };
 
 const handleRightClick = async (row, col) => {
-    await fetch(`${apiBaseUrl
-        }/right_click`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                room_id: roomId, position: {
-                    row, col
-                }
-            }),
+    socket.emit("right_click", {
+        room_id: roomId,
+        position: {
+            row, col
         }
-    );
+    });
 };
 
 socket.on("update_room", (data) => {
@@ -96,8 +80,8 @@ document.getElementById("back-to-menu").addEventListener("click", () => {
 });
 
 document.getElementById("restart-game").addEventListener("click", () => {
-    fetch(`${apiBaseUrl}/reset`, {
-        method: "POST"
+    socket.emit("restart_game", {
+        room_id: roomId
     });
 });
 
