@@ -60,7 +60,7 @@ class RoomState:
         return {
             "players": [player.to_dict() for player in self._players],
             "options": self._options.to_dict(),
-            "show_board": self._show_board.to_dict(),
+            "show_board": self._show_board.show(),
             "is_won": self._is_won,
             "is_lost": self._is_lost,
         }

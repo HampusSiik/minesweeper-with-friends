@@ -54,7 +54,7 @@ class TestRoomState(unittest.TestCase):
         )
         self.assertEqual(
             room_state_dict["show_board"],
-            self.show_board.to_dict(),
+            self.show_board.show(),
             "ShowBoard not converted to dict correctly",
         )
         self.assertEqual(

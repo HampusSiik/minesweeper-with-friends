@@ -13,6 +13,24 @@ const joinRoom = () => {
     );
 }
 
+const createCellObject = (character) => {
+    is_revealed = !"#F".includes(character);
+    is_mine = character === "*";
+    is_flagged = character === "F";
+    adjacent_mines = "0123456789".includes(character) ? parseInt(character) : 0;
+    return {
+        is_revealed,
+        is_mine,
+        is_flagged,
+        adjacent_mines
+    };
+}
+
+const createBoardObject = (board) => {
+
+    return board.split('\n').map(row => Array.from(row).map(createCellObject));
+}
+
 const createCell = (rowIndex, colIndex, won, lost) => {
     const cell = document.createElement("div");
     cell.classList.add("cell");
@@ -71,7 +89,7 @@ const handleRightClick = async (row, col) => {
 };
 
 socket.on("update_room", (data) => {
-    updateGrid(data.show_board, data.is_won, data.is_lost);
+    updateGrid(createBoardObject(data.show_board), data.is_won, data.is_lost);
     console.log("update_room", data);
 });
 
