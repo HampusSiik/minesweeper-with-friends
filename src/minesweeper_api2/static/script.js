@@ -80,7 +80,7 @@ document.getElementById("back-to-menu").addEventListener("click", () => {
 });
 
 document.getElementById("restart-game").addEventListener("click", () => {
-    socket.emit("restart_game", {
+    socket.emit("reset_game", {
         room_id: roomId
     });
 });

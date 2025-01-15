@@ -86,7 +86,7 @@ def handle_right_click(data: Dict[str, Any]) -> None:
 
 
 @socketio.on("reset_game")
-def handle_reset() -> None:
+def handle_reset(_) -> None:
     """
     Handle a reset game event.
     """
