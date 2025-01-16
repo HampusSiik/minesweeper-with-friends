@@ -11,7 +11,7 @@ const resetEmoji = (isWon, isLost) => {
     } else if (isLost) {
         return "😵";
     } else {
-        return "😊";
+        return "🙂";
     }
 }
 
@@ -54,8 +54,22 @@ const createCell = (rowIndex, colIndex, won, lost) => {
     return cell;
 }
 
+const makeResetOopsFace = () => {
+    const button = document.getElementById("restart-game");
+    button.textContent = "😮";
+    return button;
+}
+
+const resetResetEmoji = () => {
+    const button = document.getElementById("restart-game");
+    button.textContent = resetEmoji(false, false);
+    return button;
+}
+
 const updateGrid = (board, won, lost) => {
     const grid = document.getElementById("grid");
+    grid.addEventListener("mousedown", () => makeResetOopsFace());
+    grid.addEventListener("mouseup", () => resetResetEmoji());
     grid.addEventListener("contextmenu", (event) => event.preventDefault());
     grid.innerHTML = "";
     grid.style.gridTemplateColumns = `repeat(${board[
