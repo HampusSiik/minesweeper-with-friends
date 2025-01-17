@@ -54,23 +54,28 @@ const createCell = (rowIndex, colIndex, won, lost) => {
     return cell;
 }
 
-const makeResetOopsFace = () => {
+const makeResetOopsFace = (won, lost) => {
     const button = document.getElementById("restart-game");
-    button.textContent = "😮";
+    if (!won || lost) {
+        button.textContent = "😮";
+    }
     return button;
 }
 
-const resetResetEmoji = () => {
+const resetResetEmoji = (won, lost) => {
     const button = document.getElementById("restart-game");
-    button.textContent = resetEmoji(false, false);
+    button.textContent = resetEmoji(won, lost);
     return button;
 }
 
 const updateGrid = (board, won, lost) => {
     const grid = document.getElementById("grid");
-    grid.addEventListener("mousedown", () => makeResetOopsFace());
-    grid.addEventListener("mouseup", () => resetResetEmoji());
+
+    grid.addEventListener("mousedown", () => makeResetOopsFace(won, lost));
+    grid.addEventListener("mouseup", () => resetResetEmoji(won, lost));
+
     grid.addEventListener("contextmenu", (event) => event.preventDefault());
+
     grid.innerHTML = "";
     grid.style.gridTemplateColumns = `repeat(${board[
         0
@@ -115,7 +120,6 @@ const handleRightClick = async (row, col) => {
 socket.on("update_room", (data) => {
     updateGrid(createBoardObject(data.show_board), data.is_won, data.is_lost);
     document.getElementById("restart-game").textContent = resetEmoji(data.is_won, data.is_lost);
-    console.log("update_room", data);
 });
 
 const toMainMenu = () => {
