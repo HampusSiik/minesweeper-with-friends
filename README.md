@@ -9,3 +9,7 @@ A mountain story is a high level user story that is the highest level of abstrac
 ## Version
 
 The versioning of this project will follow the amount of mountain stories that are completed followed by the amount of boulders that are completed and then the amount of subtask that are completed. For example, if 2 mountain stories, 3 boulders and 4 subtasks are completed the version will be 2.3.4. Subtasks of completed boulders will not be counted in the versioning of the project neither will boulders of complete mountains.
+
+## Run the application
+
+To run the application you need to install all the package by running `pip install .` in your terminal. Then you run the main module using your python interpreter. By default it will run on port 5000.
