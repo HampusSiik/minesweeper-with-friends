@@ -28,6 +28,18 @@ As a player I want the game to be fast and responsive and look nicer.
 - [x] Make new game in room
 - [x] Make the game more responsive
 
+### Precistance between runs
+
+As a player I want to be able to continue a game that I have started at a later time.
+
+#### Definition of done
+
+- [ ] Make user sessions persistent
+- [ ] Make player accounts persistent
+- [ ] Make rooms persistent
+- [ ] Make it possible to see active rooms on an admin panel
+- [ ] Make it possible to shut down rooms from an admin panel
+
 ## The Boulders
 
 These are slightly smaller pieces of the system that should be smaller and more managable.
@@ -106,3 +118,50 @@ As a player I want the game to be more responsive.
 
 - [x] Reduce the package sent on update.
 - [x] Disable context menu in between cells.
+
+
+### Make user sessions persistent
+
+As a user I do not want to need to login more than once. 
+
+#### Definition of done
+
+- [ ] Add database support for sessions.
+
+### Make player accounts persistent
+
+As a player I want to be able to use the same account to play the game.
+
+#### Definition of done
+
+- [ ] Add database support for players
+- [ ] Connect sessions to players in the database
+
+### Make rooms persistent
+
+As a player I want to be able to resume my game later.
+
+#### Definition of done
+
+- [ ] Add database support for rooms
+
+### Make it possible to see active rooms on an admin panel
+
+As an admin I want to be able to monitor the system and see active rooms.
+
+#### Definition of done
+
+- [ ] Make it possible to retrieve rooms
+- [ ] Add an admin panel
+- [ ] Let admins spectate a room
+
+
+### Make it possible to shut down rooms from an admin panel
+
+As an admin I want to be able to shut down a room that is no longer in use.
+
+#### Definition of done
+
+- [ ] Make it possible to select a room for deletion
+- [ ] Add an admin panel
+- [ ] Add a delete button on the admin panel
