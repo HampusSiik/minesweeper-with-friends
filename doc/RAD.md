@@ -126,7 +126,7 @@ As a user I do not want to need to login more than once.
 
 #### Definition of done
 
-- [ ] Add database support for sessions.
+- [ ] Add database support for sessions
 
 ### Make player accounts persistent
 
